@@ -11,14 +11,14 @@ package com.fyp.model.bean;
 public class pastTitles {
     private int proId;
     private String studentId;
-    private String staffId;
+    private String lId;
     private String proTitle;
     private String session;
     
-    public pastTitles(int proId,String studentId, String staffId, String proTitle,String session){
+    public pastTitles(int proId,String studentId, String lId, String proTitle,String session){
         this.proId=proId;
         this.studentId=studentId;
-        this.staffId=staffId;
+        this.lId=lId;
         this.proTitle=proTitle;
         this.session=session;
     }
@@ -31,8 +31,8 @@ public class pastTitles {
         return studentId;
     }
 
-    public String getStaffId() {
-        return staffId;
+    public String getLId() {
+        return lId;
     }
 
     public String getProTitle() {
@@ -51,8 +51,8 @@ public class pastTitles {
         this.studentId = studentId;
     }
 
-    public void setStaffId(String staffId) {
-        this.staffId = staffId;
+    public void setLId(String lId) {
+        this.lId = lId;
     }
 
     public void setProTitle(String proTitle) {
