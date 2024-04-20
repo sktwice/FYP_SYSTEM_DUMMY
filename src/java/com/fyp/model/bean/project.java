@@ -13,14 +13,14 @@ public class project {
     private String studentId;
     private String lId;
     private String proTitle;
-    private String date;
+    private String session;
     
-    public project(int proId,String studentId, String lId, String proTitle, String date ){
+    public project(int proId,String studentId, String lId, String proTitle, String session ){
         this.proId=proId;
         this.studentId=studentId;
         this.lId=lId;
         this.proTitle=proTitle;
-        this.date=date;
+        this.session=session;
     }
 
     public int getProId() {
@@ -39,8 +39,8 @@ public class project {
         return proTitle;
     }
 
-    public String getDate() {
-        return date;
+    public String getSession() {
+        return session;
     }
 
     public void setProId(int proId) {
@@ -59,8 +59,8 @@ public class project {
         this.proTitle = proTitle;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setSession(String session) {
+        this.session = session;
     }
     
     

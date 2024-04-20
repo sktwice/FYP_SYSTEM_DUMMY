@@ -13,14 +13,14 @@ public class pastTitles {
     private String studentId;
     private String staffId;
     private String proTitle;
-    private String date;
+    private String session;
     
-    public pastTitles(int proId,String studentId, String staffId, String proTitle,String date){
+    public pastTitles(int proId,String studentId, String staffId, String proTitle,String session){
         this.proId=proId;
         this.studentId=studentId;
         this.staffId=staffId;
         this.proTitle=proTitle;
-        this.date=date;
+        this.session=session;
     }
 
     public int getProId() {
@@ -39,8 +39,8 @@ public class pastTitles {
         return proTitle;
     }
 
-    public String getDate() {
-        return date;
+    public String getSession() {
+        return session;
     }
 
     public void setProId(int proId) {
@@ -59,8 +59,8 @@ public class pastTitles {
         this.proTitle = proTitle;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setSession(String session) {
+        this.session = session;
     }
     
     
