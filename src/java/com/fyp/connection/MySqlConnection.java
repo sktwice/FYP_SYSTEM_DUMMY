@@ -17,7 +17,7 @@ public class MySqlConnection {
     private String jdbcUsername = "";
     private String jdbcPassword = "";
 
-    protected Connection getConnection() {
+    public Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
