@@ -284,7 +284,7 @@
         <div class="columns is-multiline m-0 p-0">
             <div class="column is-8">
                 <div class="custom-border p-3 h-100 w-100">
-                    <label class="has-text-weight-semibold is-size-5 has-text-grey">
+                    <label class="has-text-weight-semibold has-text-grey">
                         Today's Summary
                     </label>
                     <div class="columns m-0 p-0">
@@ -321,7 +321,7 @@
             </div>
             <div class="column is-4">
                 <div class="custom-border p-3">
-                    <label class="has-text-weight-semibold is-size-5 has-text-grey">
+                    <label class="has-text-weight-semibold has-text-grey">
                         Graph
                     </label>
                     <div class="w-100 h-100">
@@ -331,7 +331,7 @@
             </div>
             <div class="column is-8">
                 <div class="custom-border p-3">
-                    <label class="has-text-weight-semibold is-size-5 has-text-grey">
+                    <label class="has-text-weight-semibold has-text-grey">
                         Students Report Progress
                     </label>
                     <table>
@@ -362,14 +362,14 @@
             </div>
             <div class="column is-4">
                 <div class="custom-border p-3 h-100 w-100">
-                    <label class="has-text-weight-semibold is-size-5 has-text-grey">
+                    <label class="has-text-weight-semibold has-text-grey">
                         Statistics
                     </label>
                 </div>
             </div>
             <div class="column is-full">
                 <div class="custom-border p-3 h-100 w-100">
-                    <label class="has-text-weight-semibold is-size-5 has-text-grey">
+                    <label class="has-text-weight-semibold has-text-grey">
                         Alerts and Reminder
                     </label>
                     <section class="section is-small"></section>
