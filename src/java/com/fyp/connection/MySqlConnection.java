@@ -13,9 +13,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySqlConnection {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/fyp";
-    private String jdbcUsername = "";
-    private String jdbcPassword = "";
+    private String jdbcURL = "jdbc:mysql://localhost:3306/project";
+    private String jdbcUsername = "root";
+    private String jdbcPassword = "faris161102";
 
     public Connection getConnection() {
         Connection connection = null;

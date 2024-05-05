@@ -8,50 +8,25 @@ package com.fyp.model.bean;
  *
  * @author User
  */
-public class supervisor {
-    private String lId;
-    private String Iname;
-    private String position;
-    private String password;
+public class supervisor extends lecturer {
     
-    public supervisor(String lId, String Iname, String position,String password){
-        this.lId=lId;
-        this.Iname=Iname;
-        this.position=position;
-        this.password=password;
+    private String position;
+   
+    public supervisor(String lId,String fId,String lName, int phoneNum,String password,String sCourse,String position){
+        super(lId,fId, lName,  phoneNum,password,sCourse);
+        this.position = position;
     }
 
-    public String getlId() {
-        return lId;
-    }
-
-    public String getIname() {
-        return Iname;
-    }
-
+ 
     public String getPosition() {
         return position;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setlId(String lId) {
-        this.lId = lId;
-    }
-
-    public void setIname(String Iname) {
-        this.Iname = Iname;
     }
 
     public void setPosition(String position) {
         this.position = position;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+   
     
     
 }

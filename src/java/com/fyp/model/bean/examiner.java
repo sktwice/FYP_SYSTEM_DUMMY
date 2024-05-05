@@ -8,74 +8,22 @@ package com.fyp.model.bean;
  *
  * @author User
  */
-public class examiner {
-    private String lId;
-    private String eName;
-    private String position;
-    private String password;
+public class examiner extends lecturer {
     
-    public examiner(String lId, String eName, String position, String password){
-        this.lId=lId;
-        this.eName=eName;
-        this.position=position;
-        this.password=password;
+    public String position;
+ 
+    public examiner(String lId,String fId,String lName, int phoneNum,String password,String sCourse, String position){
+        
+        super(lId,fId,lName,phoneNum, password, sCourse);
+        this.position = position;    
     }
-
-    /**
-     * @return the lId
-     */
-    public String getlId() {
-        return lId;
-    }
-
-    /**
-     * @return the eName
-     */
-    public String geteName() {
-        return eName;
-    }
-
-    /**
-     * @return the position
-     */
-    public String getPosition() {
+    
+       public String getPosition() {
         return position;
     }
 
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * @param lId the lId to set
-     */
-    public void setlId(String lId) {
-        this.lId = lId;
-    }
-
-    /**
-     * @param eName the eName to set
-     */
-    public void seteName(String eName) {
-        this.eName = eName;
-    }
-
-    /**
-     * @param position the position to set
-     */
     public void setPosition(String position) {
         this.position = position;
     }
-
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
     
 }
