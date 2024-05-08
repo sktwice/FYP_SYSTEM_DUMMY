@@ -237,9 +237,9 @@
                 </a>
 
                 <div class="navbar-dropdown">
-                    <a class="box has-text-black navbar-item p-4 m-0 is-size-7" style="background-color: #a0e4d1;;">
-                        <span class="fas fa-home pr-2"></span>
-                        <span class="is-size-7" >Dashboard</span>
+                    <a class="navbar-item p-4 is-size-7">
+                        <span class="has-text-white fas fa-home pr-2"></span>
+                        <span class="has-text-white is-size-7" >Dashboard</span>
                     </a>
                     <a class="navbar-item p-4 is-size-7">
                         <span class="has-text-white fas fa-user pr-4"></span>
@@ -249,9 +249,9 @@
                         <span class="has-text-white fas fa-inbox pr-4"></span>
                         <span class="has-text-white is-size-7" >Reports</span>
                     </a>
-                    <a class="navbar-item p-4 is-size-7">
-                        <span class="has-text-white fas fa-file-pen pr-4"></span>
-                        <span class="has-text-white" >Form</span>
+                    <a class="box has-text-black navbar-item p-4 m-0 is-size-7" style="background-color: #a0e4d1;">
+                        <span class="fas fa-file-pen pr-4"></span>
+                        <span class="is-size-7" >Form</span>
                     </a>
                     <a class="navbar-item p-4 is-size-7">
                         <span class="has-text-white fas fa-circle-info pr-4"></span>
@@ -296,15 +296,15 @@
                   </a>
               </li>
               <li>
-                  <a class="box has-text-black navbar-item p-4 m-0 is-size-7" style="background-color: #a0e4d1;">
-                    <span class="fas fa-inbox pr-4"></span>
-                    <span class="is-size-7" >Reports</span>
+                  <a class="navbar-item p-4 is-size-7">
+                    <span class="has-text-white fas fa-inbox pr-4"></span>
+                    <span class="has-text-white is-size-7" >Reports</span>
                   </a>
               </li>
               <li>
-                  <a class="navbar-item p-4 is-size-7">
-                        <span class="has-text-white fas fa-file-pen pr-4"></span>
-                        <span class="has-text-white" >Form</span>
+                  <a class="box has-text-black navbar-item p-4 m-0 is-size-7" style="background-color: #a0e4d1;">
+                        <span class="fas fa-file-pen pr-4"></span>
+                        <span class="is-size-7" >Form</span>
                   </a>
               </li>
               <li>
