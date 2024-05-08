@@ -376,24 +376,24 @@
                 <table class="">
                     <thead>
                     <tr class="" style="border-bottom: 2px solid #ddd;">
-                        <th class="has-text-grey-lighter is-size-7 has-text-centered">Topic</th>
-                        <th class="has-text-grey-lighter is-size-7 has-text-centered">Programme</th>
-                        <th class="has-text-grey-lighter is-size-7 has-text-centered">Session Date</th>
-                        <th class="has-text-grey-lighter is-size-7 has-text-centered">Total Students</th>
+                        <th class="has-text-grey-light is-size-7 has-text-centered has-text-weight-semibold">Topic</th>
+                        <th class="has-text-grey-light is-size-7 has-text-centered has-text-weight-semibold">Programme</th>
+                        <th class="has-text-grey-light is-size-7 has-text-centered has-text-weight-semibold">Session Date</th>
+                        <th class="has-text-grey-light is-size-7 has-text-centered has-text-weight-semibold">Total Students</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="has-text-centered is-size-7 has-text-right-mobile" data-label="Topic">Android App Development</td>
-                        <td class="is-size-7 has-text-centered has-text-right-mobile" data-label="Programme">CS230</td>
-                        <td class="is-size-7 has-text-centered has-text-right-mobile" data-label="Session Date">Session Date</td>
-                        <td class="is-size-7 has-text-centered has-text-right-mobile" data-label="Total Students">23</td>
+                        <td class="is-size-7 has-text-centered has-text-right-mobile has-text-weight-semibold" data-label="Topic">Android App Development</td>
+                        <td class="is-size-7 has-text-centered has-text-right-mobile has-text-weight-semibold" data-label="Programme">CS230</td>
+                        <td class="is-size-7 has-text-centered has-text-right-mobile has-text-weight-semibold" data-label="Session Date">Session Date</td>
+                        <td class="is-size-7 has-text-centered has-text-right-mobile has-text-weight-semibold" data-label="Total Students">23</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="p-3 is-flex is-justify-content-space-between">
-                <label class="has-text-grey-lighter is-size-7">Showing data 1 to 8 of 256k entries</label>
+                <label class="has-text-grey-light is-size-7">Showing data 1 to 8 of 256k entries</label>
                 <div>
                     <nav class="pagination is-right" role="navigation" aria-label="pagination">
                       <ul class="pagination-list">
