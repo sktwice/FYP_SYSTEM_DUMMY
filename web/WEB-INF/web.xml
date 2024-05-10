@@ -4,8 +4,16 @@
         <servlet-name>loginStudentServlet</servlet-name>
         <servlet-class>com.fyp.controller.loginServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Dashboard_LecturerServlet</servlet-name>
+        <servlet-class>com.fyp.controller.lecturer.Dashboard_LecturerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginStudentServlet</servlet-name>
         <url-pattern>/loginStudentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Dashboard_LecturerServlet</servlet-name>
+        <url-pattern>/Dashboard_LecturerServlet</url-pattern>
     </servlet-mapping>
 </web-app>

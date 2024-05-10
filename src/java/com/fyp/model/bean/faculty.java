@@ -10,37 +10,37 @@ package com.fyp.model.bean;
  */
 public class faculty {
     private String fId;
-    private String sName;
-    private String sCourse;
+    private String fName;
+    private String fCourse;
     
-    public faculty(String fId, String sName, String sCourse){
+    public faculty(String fId, String fName, String fCourse){
         this.fId=fId;
-        this.sName=sName;
-        this.sCourse=sCourse;
+        this.fName=fName;
+        this.fCourse=fCourse;
     }
 
     public String getfId() {
         return fId;
     }
 
-    public String getsName() {
-        return sName;
+    public String getfName() {
+        return fName;
     }
 
-    public String getsCourse() {
-        return sCourse;
+    public String getfCourse() {
+        return fCourse;
     }
 
     public void setfId(String fId) {
         this.fId = fId;
     }
 
-    public void setsName(String sName) {
-        this.sName = sName;
+    public void setfName(String fName) {
+        this.fName = fName;
     }
 
-    public void setsCourse(String sCourse) {
-        this.sCourse = sCourse;
+    public void setfCourse(String fCourse) {
+        this.fCourse = fCourse;
     }
     
     

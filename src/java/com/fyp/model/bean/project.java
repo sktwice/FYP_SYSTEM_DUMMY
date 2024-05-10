@@ -13,15 +13,21 @@ public class project {
     private String studentId;
     private String lId;
     private String proTitle;
+    private String areaOfInterest;
+    private String proUrl;
     private String session;
     
-    public project(int proId,String studentId, String lId, String proTitle, String session ){
+    public project(int proId,String studentId, String lId, String proTitle,String areaOfInterest,String proUrl, String session ){
         this.proId=proId;
         this.studentId=studentId;
         this.lId=lId;
+        this.areaOfInterest=areaOfInterest;
+        this.proUrl=proUrl;
         this.proTitle=proTitle;
         this.session=session;
     }
+    
+    
 
     public int getProId() {
         return proId;
@@ -61,6 +67,14 @@ public class project {
 
     public void setSession(String session) {
         this.session = session;
+    }
+
+    public String getAreaOfInterest() {
+        return areaOfInterest;
+    }
+
+    public String getProUrl() {
+        return proUrl;
     }
     
     

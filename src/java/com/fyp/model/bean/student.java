@@ -11,21 +11,27 @@ package com.fyp.model.bean;
 public class student {
     private String studentId;
     private String fId;
+    private String loginId;
+    private String adminId;
     private String sName;
     private int semester;
     private String password;
-    private String sCourse;
+    private String sImage;
     private int phoneNum;
     
-    public student(String studentId,String fId, String sName, int semester, String password, String sCourse, int phoneNum){
+    public student(String studentId,String fId,String loginId, String adminId, String sName, int semester, String password, String sImage, int phoneNum){
         this.studentId=studentId;
         this.fId=fId;
+        this.loginId=loginId;
+        this.adminId=adminId;
         this.sName=sName;
         this.semester=semester;
         this.password=password;
-        this.sCourse=sCourse;
+        this.sImage=sImage;
         this.phoneNum=phoneNum;
     }
+    
+    
 
     public String getStudentId() {
         return studentId;
@@ -47,8 +53,8 @@ public class student {
         return password;
     }
 
-    public String getsCourse() {
-        return sCourse;
+    public String getsImage() {
+        return sImage;
     }
 
     public int getPhoneNum() {
@@ -75,12 +81,20 @@ public class student {
         this.password = password;
     }
 
-    public void setsCourse(String sCourse) {
-        this.sCourse = sCourse;
+    public void setsImage(String sImage) {
+        this.sImage = sImage;
     }
 
     public void setPhoneNum(int phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public String getAdminId() {
+        return adminId;
     }
     
     

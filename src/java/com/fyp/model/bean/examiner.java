@@ -9,21 +9,39 @@ package com.fyp.model.bean;
  * @author User
  */
 public class examiner extends lecturer {
-    
-    public String position;
- 
-    public examiner(String lId,String fId,String lName, int phoneNum,String password,String sCourse, String position){
-        
-        super(lId,fId,lName,phoneNum, password, sCourse);
-        this.position = position;    
+    private String eName;
+    private String position;
+    private int totalPro;
+
+    public examiner(String lId, String fId, String loginId, String adminId, String iImage, String lName, int phoneNum, String email, String sCourse,
+                    String eName, String position, int totalPro) {
+        super(lId, fId, loginId, adminId, iImage, lName, phoneNum, email, sCourse);
+        this.eName = eName;
+        this.position = position;
+        this.totalPro = totalPro;
     }
-    
-       public String getPosition() {
+
+    public String geteName() {
+        return eName;
+    }
+
+    public void seteName(String eName) {
+        this.eName = eName;
+    }
+
+    public String getPosition() {
         return position;
     }
 
     public void setPosition(String position) {
         this.position = position;
     }
-    
+
+    public int getTotalPro() {
+        return totalPro;
+    }
+
+    public void setTotalPro(int totalPro) {
+        this.totalPro = totalPro;
+    }
 }

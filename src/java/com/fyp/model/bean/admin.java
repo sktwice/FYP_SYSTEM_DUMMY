@@ -10,56 +10,70 @@ package com.fyp.model.bean;
  */
 public class admin {
     private String adminId;
+    private String loginId;
+    private String aImage;
     private String aName;
-    private String password;
+    private int phoneNum;
+    private String email;
     
-    public admin(String adminId, String aName, String password){
+    public admin(String adminId, String loginId, String aImage, String aName, int phoneNum, String email ){
         this.adminId=adminId;
+        this.loginId=loginId;
+        this.aImage=aImage;
         this.aName=aName;
-        this.password=password;
+        this.phoneNum=phoneNum;
+        this.email=email;
     }
 
-    /**
-     * @return the adminId
-     */
     public String getAdminId() {
         return adminId;
     }
 
-    /**
-     * @return the aName
-     */
+    public String getLoginId() {
+        return loginId;
+    }
+
+    public String getaImage() {
+        return aImage;
+    }
+
     public String getaName() {
         return aName;
     }
 
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
+    public int getPhoneNum() {
+        return phoneNum;
     }
 
-    /**
-     * @param adminId the adminId to set
-     */
+    public String getEmail() {
+        return email;
+    }
+
     public void setAdminId(String adminId) {
         this.adminId = adminId;
     }
 
-    /**
-     * @param aName the aName to set
-     */
+    public void setLoginId(String loginId) {
+        this.loginId = loginId;
+    }
+
+    public void setaImage(String aImage) {
+        this.aImage = aImage;
+    }
+
     public void setaName(String aName) {
         this.aName = aName;
     }
 
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPhoneNum(int phoneNum) {
+        this.phoneNum = phoneNum;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
     
+    
+
     
 }
