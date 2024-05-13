@@ -13,7 +13,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySqlConnection {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/project";
+    private String jdbcURL = "jdbc:mysql://localhost:3306/fyp";
     private String jdbcUsername = "root";
     private String jdbcPassword = "faris161102";
 
@@ -30,3 +30,5 @@ public class MySqlConnection {
         return connection;
     }
 }
+
+
