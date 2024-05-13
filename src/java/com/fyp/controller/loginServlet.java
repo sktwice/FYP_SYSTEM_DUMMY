@@ -33,7 +33,7 @@ public class loginServlet extends HttpServlet {
     if ("student".equals(role)) {
         isValidUser = loginDAO.validateStudent(username, password);
     } else if ("staff".equals(role)) {
-        isValidUser = loginDAO.validateStaff(username, password);
+        isValidUser = loginDAO.validateLecturer(username, password);
     }
 
     if (isValidUser) {

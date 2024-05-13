@@ -28,7 +28,7 @@ public class loginDao {
         return validateUser(SELECT_STUDENT_BY_USERNAME, username, password);
     }
 
-    public boolean validateStaff(String username, String password) {
+    public boolean validateLecturer(String username, String password) {
         return validateUser(SELECT_LECTURER_BY_USERNAME, username, password);
     }
 
