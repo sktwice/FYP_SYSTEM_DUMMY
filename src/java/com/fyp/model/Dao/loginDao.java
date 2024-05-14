@@ -16,7 +16,8 @@ import java.sql.SQLException;
  */
 public class loginDao {
     private static final String SELECT_STUDENT_BY_USERNAME = "SELECT * FROM student WHERE username = ? AND password = ?";
-    private static final String SELECT_STAFF_BY_USERNAME = "SELECT * FROM lecturer WHERE username = ? AND password = ?";
+    private static final String SELECT_LECTURER_BY_USERNAME = "SELECT * FROM lecturer WHERE username = ? AND password = ? AND position = ?";
+    private static final String SELECT_ADMIN_BY_USERNAME = "SELECT * FROM admin WHERE username = ? AND password = ?";
     private MySqlConnection dbConnection;
 
     public void init() {
@@ -27,8 +28,12 @@ public class loginDao {
         return validateUser(SELECT_STUDENT_BY_USERNAME, username, password);
     }
 
-    public boolean validateStaff(String username, String password) {
-        return validateUser(SELECT_STAFF_BY_USERNAME, username, password);
+    public boolean validateLecturer(String username, String password) {
+        return validateUser(SELECT_LECTURER_BY_USERNAME, username, password);
+    }
+
+    public boolean validateAdmin(String username, String password) {
+        return validateUser(SELECT_ADMIN_BY_USERNAME, username, password);
     }
 
     private boolean validateUser(String query, String username, String password) {
