@@ -17,15 +17,15 @@ public class MySqlConnection {
     private String jdbcUsername = "root";
     private String jdbcPassword = "faris161102";
 
-    public Connection getConnection() {
+    public Connection getConnection() throws SQLException {
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-        } catch (SQLException e) {
-            e.printStackTrace();
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new SQLException("MySQL JDBC Driver not found", e);
+        } catch (SQLException e) {
+            throw new SQLException("Error connecting to the database: " + e.getMessage(), e);
         }
         return connection;
     }
