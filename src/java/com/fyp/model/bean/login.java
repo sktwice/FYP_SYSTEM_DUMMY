@@ -14,8 +14,9 @@ public class login {
     private String password;
     private String category;
     
-    public login(String loginId, String username, String password, String category){
-        this.loginId=loginId;
+    
+    public login(String username, String password, String category) {
+        
         this.username=username;
         this.password=password;
         this.category=category;
