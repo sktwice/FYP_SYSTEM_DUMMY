@@ -21,27 +21,29 @@ import com.fyp.model.Dao.loginDao;
 public class loginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-    String role = request.getParameter("role");
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
+        String role = request.getParameter("role");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-    loginDao loginDAO = new loginDao();
+        loginDao loginDAO = new loginDao();
 
-    boolean isValidUser = false;
-    if ("student".equals(role)) {
-        isValidUser = loginDAO.validateStudent(username, password);
-    } else if ("staff".equals(role)) {
-        isValidUser = loginDAO.validateLecturer(username, password);
+        boolean isValidUser = false;
+        if ("student".equals(role)) {
+            isValidUser = loginDAO.validateStudent(username, password);
+        } else if ("staff".equals(role)) {
+            isValidUser = loginDAO.validateLecturer(username, password);
+        }
+
+        if (isValidUser) {
+            request.getSession().setAttribute("username", username);
+            response.sendRedirect("index.jsp");
+        } else {
+            // Invalid credentials, redirect to login page with error message
+            request.setAttribute("errorMessage", "Invalid username or password. Please try again.");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
-
-    if (isValidUser) {
-        request.getSession().setAttribute("username", username);
-        response.sendRedirect("index.jsp");
-    } else {
-        // Invalid credentials, redirect to login page with error message
-        response.sendRedirect("login-failure.jsp");
-    }
-}
 }
