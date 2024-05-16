@@ -9,17 +9,17 @@ package com.fyp.model.bean;
  * @author User
  */
 public class faculty {
-    private String fId;
+    private int fId;
     private String fName;
     private String fCourse;
     
-    public faculty(String fId, String fName, String fCourse){
+    public faculty(int fId, String fName, String fCourse){
         this.fId=fId;
         this.fName=fName;
         this.fCourse=fCourse;
     }
 
-    public String getfId() {
+    public int getfId() {
         return fId;
     }
 
@@ -31,7 +31,7 @@ public class faculty {
         return fCourse;
     }
 
-    public void setfId(String fId) {
+    public void setfId(int fId) {
         this.fId = fId;
     }
 

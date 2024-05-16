@@ -10,14 +10,14 @@ package com.fyp.model.bean;
  */
 public class project {
     private int proId;
-    private String studentId;
-    private String lId;
+    private int studentId;
+    private int lId;
     private String proTitle;
     private String areaOfInterest;
     private String proUrl;
     private String session;
     
-    public project(int proId,String studentId, String lId, String proTitle,String areaOfInterest,String proUrl, String session ){
+    public project(int proId,int studentId, int lId, String proTitle,String areaOfInterest,String proUrl, String session ){
         this.proId=proId;
         this.studentId=studentId;
         this.lId=lId;
@@ -33,11 +33,11 @@ public class project {
         return proId;
     }
 
-    public String getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public String getlId() {
+    public int getlId() {
         return lId;
     }
 
@@ -53,11 +53,11 @@ public class project {
         this.proId = proId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
-    public void setlId(String lId) {
+    public void setlId(int lId) {
         this.lId = lId;
     }
 

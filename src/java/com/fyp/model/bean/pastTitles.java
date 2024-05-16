@@ -10,12 +10,12 @@ package com.fyp.model.bean;
  */
 public class pastTitles {
     private int proId;
-    private String studentId;
-    private String lId;
+    private int studentId;
+    private int lId;
     private String proTitle;
     private String session;
     
-    public pastTitles(int proId,String studentId, String lId, String proTitle,String session){
+    public pastTitles(int proId,int studentId, int lId, String proTitle,String session){
         this.proId=proId;
         this.studentId=studentId;
         this.lId=lId;
@@ -27,11 +27,11 @@ public class pastTitles {
         return proId;
     }
 
-    public String getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public String getLId() {
+    public int getLId() {
         return lId;
     }
 
@@ -47,11 +47,11 @@ public class pastTitles {
         this.proId = proId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
-    public void setLId(String lId) {
+    public void setLId(int lId) {
         this.lId = lId;
     }
 
