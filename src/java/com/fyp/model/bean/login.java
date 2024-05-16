@@ -9,7 +9,7 @@ package com.fyp.model.bean;
  * @author User
  */
 public class login {
-    private String loginId;
+    private int loginId;
     private String username;
     private String password;
     private String category;
@@ -23,7 +23,7 @@ public class login {
     }
     public login(){}
 
-    public String getLoginId() {
+    public int getLoginId() {
         return loginId;
     }
 
@@ -39,7 +39,7 @@ public class login {
         return category;
     }
 
-    public void setLoginId(String loginId) {
+    public void setLoginId(int loginId) {
         this.loginId = loginId;
     }
 

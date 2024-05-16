@@ -10,14 +10,12 @@ package com.fyp.model.bean;
  */
 public class supervisor extends lecturer {
     private String sName;
-    private String position;
     private int totalStud;
 
-    public supervisor(String lId, String fId, String loginId, String adminId, String iImage, String lName, int phoneNum, String email, String sCourse,
-                      String sName, String position, int totalStud) {
-        super(lId, fId, loginId, adminId, iImage, lName, phoneNum, email, sCourse);
+    public supervisor(int lId, int fId, int loginId, int adminId, String position, String iImage, String lName, int phoneNum, String email, String sCourse,
+                      String sName, int totalStud) {
+        super(lId, fId, loginId, adminId,position, iImage, lName, phoneNum, email, sCourse);
         this.sName = sName;
-        this.position = position;
         this.totalStud = totalStud;
     }
 
@@ -27,14 +25,6 @@ public class supervisor extends lecturer {
 
     public void setsName(String sName) {
         this.sName = sName;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
     }
 
     public int getTotalStud() {

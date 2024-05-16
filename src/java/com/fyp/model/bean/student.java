@@ -9,35 +9,35 @@ package com.fyp.model.bean;
  * @author User
  */
 public class student {
-    private String studentId;
-    private String fId;
-    private String loginId;
-    private String adminId;
+    private int studentId;
+    private int fId;
+    private int loginId;
+    private int adminId;
     private String sName;
     private int semester;
-    private String password;
     private String sImage;
+    private String sCourse;
     private int phoneNum;
     
-    public student(String studentId,String fId,String loginId, String adminId, String sName, int semester, String password, String sImage, int phoneNum){
+    public student(int studentId,int fId,int loginId, int adminId, String sName, int semester, String sImage,String sCourse, int phoneNum){
         this.studentId=studentId;
         this.fId=fId;
         this.loginId=loginId;
         this.adminId=adminId;
         this.sName=sName;
         this.semester=semester;
-        this.password=password;
         this.sImage=sImage;
+        this.sCourse=sCourse;
         this.phoneNum=phoneNum;
     }
     
     
 
-    public String getStudentId() {
+    public int getStudentId() {
         return studentId;
     }
 
-    public String getfId() {
+    public int getfId() {
         return fId;
     }
 
@@ -49,10 +49,6 @@ public class student {
         return semester;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getsImage() {
         return sImage;
     }
@@ -61,11 +57,11 @@ public class student {
         return phoneNum;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
-    public void setfId(String fId) {
+    public void setfId(int fId) {
         this.fId = fId;
     }
 
@@ -77,10 +73,7 @@ public class student {
         this.semester = semester;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    
     public void setsImage(String sImage) {
         this.sImage = sImage;
     }
@@ -89,12 +82,20 @@ public class student {
         this.phoneNum = phoneNum;
     }
 
-    public String getLoginId() {
+    public int getLoginId() {
         return loginId;
     }
 
-    public String getAdminId() {
+    public int getAdminId() {
         return adminId;
+    }
+
+    public String getsCourse() {
+        return sCourse;
+    }
+
+    public void setsCourse(String sCourse) {
+        this.sCourse = sCourse;
     }
     
     

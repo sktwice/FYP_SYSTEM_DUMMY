@@ -9,21 +9,23 @@ package com.fyp.model.bean;
  * @author User
  */
 public class lecturer {
-    private String lId;
-    private String fId;
-    private String loginId;
-    private String adminId;
+    private int lId;
+    private int fId;
+    private int loginId;
+    private int adminId;
+    private String position;
     private String iImage;
     private String lName;
     private int phoneNum;
     private String email;
     private String sCourse;
     
-    public lecturer(String lId,String fId,String loginId,String adminId,String iImage,String lName, int phoneNum,String email,String sCourse){
+    public lecturer(int lId,int fId,int loginId,int adminId,String position, String iImage,String lName, int phoneNum,String email,String sCourse){
         this.lId=lId;
         this.fId=fId;
         this.loginId=loginId;
         this.adminId=adminId;
+        this.position=position;
         this.iImage=iImage;
         this.lName=lName;
         this.phoneNum=phoneNum;
@@ -33,11 +35,11 @@ public class lecturer {
     
     
 
-    public String getlId() {
+    public int getlId() {
         return lId;
     }
 
-    public String getfId() {
+    public int getfId() {
         return fId;
     }
 
@@ -54,11 +56,11 @@ public class lecturer {
         return sCourse;
     }
 
-    public void setlId(String lId) {
+    public void setlId(int lId) {
         this.lId = lId;
     }
 
-    public void setfId(String fId) {
+    public void setfId(int fId) {
         this.fId = fId;
     }
 
@@ -74,11 +76,11 @@ public class lecturer {
         this.sCourse = sCourse;
     }
 
-    public String getLoginId() {
+    public int getLoginId() {
         return loginId;
     }
 
-    public String getAdminId() {
+    public int getAdminId() {
         return adminId;
     }
 
@@ -90,11 +92,11 @@ public class lecturer {
         return email;
     }
 
-    public void setLoginId(String loginId) {
+    public void setLoginId(int loginId) {
         this.loginId = loginId;
     }
 
-    public void setAdminId(String adminId) {
+    public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
 
@@ -104,6 +106,14 @@ public class lecturer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
     
     

@@ -9,14 +9,14 @@ package com.fyp.model.bean;
  * @author User
  */
 public class admin {
-    private String adminId;
-    private String loginId;
+    private int adminId;
+    private int loginId;
     private String aImage;
     private String aName;
     private int phoneNum;
     private String email;
     
-    public admin(String adminId, String loginId, String aImage, String aName, int phoneNum, String email ){
+    public admin(int adminId, int loginId, String aImage, String aName, int phoneNum, String email ){
         this.adminId=adminId;
         this.loginId=loginId;
         this.aImage=aImage;
@@ -25,11 +25,11 @@ public class admin {
         this.email=email;
     }
 
-    public String getAdminId() {
+    public int getAdminId() {
         return adminId;
     }
 
-    public String getLoginId() {
+    public int getLoginId() {
         return loginId;
     }
 
@@ -49,11 +49,11 @@ public class admin {
         return email;
     }
 
-    public void setAdminId(String adminId) {
+    public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
 
-    public void setLoginId(String loginId) {
+    public void setLoginId(int loginId) {
         this.loginId = loginId;
     }
 

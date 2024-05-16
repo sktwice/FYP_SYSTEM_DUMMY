@@ -259,7 +259,7 @@
                   </a>
               </li>
               <li>
-                  <a class="navbar-item p-4 is-size-7">
+                  <a class="navbar-item p-4 is-size-7" href="StudentList-Supervision.jsp">
                       <span class="has-text-white fas fa-circle-plus pr-4"></span>
                       <span class="has-text-white" >Supervision</span>
                   </a>
