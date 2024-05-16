@@ -21,6 +21,7 @@ public class login {
         this.password=password;
         this.category=category;
     }
+    public login(){}
 
     public String getLoginId() {
         return loginId;
