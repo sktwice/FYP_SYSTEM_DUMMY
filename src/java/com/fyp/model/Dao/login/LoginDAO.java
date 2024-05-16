@@ -1,4 +1,9 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.fyp.model.Dao.login;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +13,12 @@ import java.sql.SQLException;
 
 import com.fyp.model.bean.login;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class LoginDAO {
 
     public boolean validate(login loginBean) throws ClassNotFoundException {
@@ -16,7 +27,7 @@ public class LoginDAO {
         Class.forName("com.mysql.jdbc.Driver");
 
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample?useSSL=false", "root", "faris161102");
-            PreparedStatement preparedStatement = connection.prepareStatement("select username, password, category from login where username = ? and password = ?")) {
+            PreparedStatement preparedStatement = connection.prepareStatement("select login_id, category from login where username = ? and password = ?")) {
 
             preparedStatement.setString(1, loginBean.getUsername());
             preparedStatement.setString(2, loginBean.getPassword());
@@ -24,12 +35,34 @@ public class LoginDAO {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 loginBean.setCategory(rs.getString("category")); // Retrieve category from database
+                loginBean.setLoginId(rs.getString("login_id")); // Retrieve loginId from database
                 status = true;
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
         return status;
+    }
+
+    public String getLecturerPosition(String loginId) throws ClassNotFoundException {
+        String position = null;
+
+        Class.forName("com.mysql.jdbc.Driver");
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample?useSSL=false", "root", "faris161102");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT position FROM lecturer WHERE login_id = ?")) {
+            
+            preparedStatement.setString(1, loginId);
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                position = rs.getString("position");
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+
+        return position;
     }
 
     private void printSQLException(SQLException ex) {
