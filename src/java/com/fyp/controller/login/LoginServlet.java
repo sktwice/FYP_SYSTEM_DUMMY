@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
 package com.fyp.controller.login;
 
 import java.io.IOException;
@@ -7,9 +11,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.fyp.model.bean.login;
 import com.fyp.model.Dao.login.LoginDAO;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -23,9 +35,9 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
-        // Create a new login object with username and password
-        login loginBean = new login(username, password, null); // Assuming category is not known at this point
+        login loginBean = new login();
+        loginBean.setUsername(username);
+        loginBean.setPassword(password);
 
         try {
             if (loginDao.validate(loginBean)) {
@@ -33,13 +45,33 @@ public class LoginServlet extends HttpServlet {
                 if (category != null) {
                     switch (category) {
                         case "admin":
-                            response.sendRedirect("Admin/Dashboard-Admin.jsp");
+                            response.sendRedirect("admin.jsp");
                             break;
                         case "student":
-                            response.sendRedirect("Students/student.jsp");
+                            response.sendRedirect("student.jsp");
                             break;
                         case "lecturer":
-                            response.sendRedirect("Lecturers/Dashboard-Lecturer.jsp");
+                            String loginId = loginBean.getLoginId();
+                            if (loginId != null) {
+                                String position = loginDao.getLecturerPosition(loginId);
+                                if (position != null) {
+                                    switch (position) {
+                                        case "examiner":
+                                            response.sendRedirect("examiner.jsp");
+                                            break;
+                                        case "supervisor":
+                                            response.sendRedirect("supervisor.jsp");
+                                            break;
+                                        default:
+                                            response.sendRedirect("generic.jsp");
+                                            break;
+                                    }
+                                } else {
+                                    response.sendRedirect("generic.jsp");
+                                }
+                            } else {
+                                response.sendRedirect("generic.jsp");
+                            }
                             break;
                         default:
                             response.sendRedirect("generic.jsp");
