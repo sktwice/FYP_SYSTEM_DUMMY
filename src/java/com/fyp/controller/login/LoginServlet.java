@@ -4,14 +4,6 @@
  */
 package com.fyp.controller.login;
 
-import java.io.IOException;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import com.fyp.model.bean.login;
 import com.fyp.model.Dao.login.LoginDAO;
@@ -45,15 +37,15 @@ public class LoginServlet extends HttpServlet {
                 if (category != null) {
                     switch (category) {
                         case "admin":
-                            response.sendRedirect("admin.jsp");
+                            response.sendRedirect("RegisterServlet");
                             break;
                         case "student":
-                            response.sendRedirect("student.jsp");
+                            response.sendRedirect("Students/student.jsp");
                             break;
                         case "lecturer":
-                            String loginId = loginBean.getLoginId();
-                            if (loginId != null) {
-                                String position = loginDao.getLecturerPosition(loginId);
+                            int loginId = loginBean.getLoginId();
+                            if (loginId != 0) {
+                                 String position = loginDao.getLecturerPosition(loginId);
                                 if (position != null) {
                                     switch (position) {
                                         case "examiner":

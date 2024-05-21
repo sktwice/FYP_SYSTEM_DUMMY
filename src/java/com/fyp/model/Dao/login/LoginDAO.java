@@ -4,13 +4,6 @@
  */
 package com.fyp.model.Dao.login;
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import com.fyp.model.bean.login;
 
 import java.sql.Connection;
@@ -26,7 +19,7 @@ public class LoginDAO {
 
         Class.forName("com.mysql.jdbc.Driver");
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample?useSSL=false", "root", "faris161102");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp?useSSL=false", "root", "");
             PreparedStatement preparedStatement = connection.prepareStatement("select login_id, category from login where username = ? and password = ?")) {
 
             preparedStatement.setString(1, loginBean.getUsername());
@@ -35,7 +28,7 @@ public class LoginDAO {
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {
                 loginBean.setCategory(rs.getString("category")); // Retrieve category from database
-                loginBean.setLoginId(rs.getString("login_id")); // Retrieve loginId from database
+                loginBean.setLoginId(rs.getInt("login_id")); // Retrieve loginId from database
                 status = true;
             }
         } catch (SQLException e) {
@@ -44,15 +37,15 @@ public class LoginDAO {
         return status;
     }
 
-    public String getLecturerPosition(String loginId) throws ClassNotFoundException {
+    public String getLecturerPosition(int loginId) throws ClassNotFoundException {
         String position = null;
 
         Class.forName("com.mysql.jdbc.Driver");
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample?useSSL=false", "root", "faris161102");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp?useSSL=false", "root", "");
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT position FROM lecturer WHERE login_id = ?")) {
             
-            preparedStatement.setString(1, loginId);
+            preparedStatement.setInt(1, loginId);
 
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next()) {

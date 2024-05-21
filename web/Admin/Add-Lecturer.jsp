@@ -1,3 +1,10 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.fyp.model.bean.faculty" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.ArrayList, java.util.Iterator" %>
+<%@ page import="java.util.ArrayList" %>
+
+
 <!DOCTYPE html>
 <html lang="en" style="height: 100%;">
 <head>
@@ -461,7 +468,6 @@
                     </div>
                     <div class="column is-3" style="align-content: center;">
                         <label class="">Position</label>
-                    </div>
                     <div class="column is-9">
                         <input class="px-4 py-2" type="text" placeholder="Position" style="width: 100%; border-radius: 6px; border-width: 1px;border-color: #bdbdbd; outline: none;">
                     </div>
