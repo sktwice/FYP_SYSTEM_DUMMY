@@ -5,7 +5,7 @@
 package com.fyp.controller.login;
 
 
-import com.fyp.model.bean.login;
+import com.fyp.model.bean.Login;
 import com.fyp.model.Dao.login.LoginDAO;
 
 import jakarta.servlet.ServletException;
@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        login loginBean = new login();
+        Login loginBean = new Login();
         loginBean.setUsername(username);
         loginBean.setPassword(password);
 
