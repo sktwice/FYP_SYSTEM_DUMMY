@@ -15,7 +15,7 @@
 <body>
  <div align="center">
   <h1>Login Form</h1>
-  <form action="<%=request.getContextPath()%>/login" method="post">
+  <form action="<%=request.getContextPath()%>/LoginServlet" method="post">
    <table style="width: 100%">
     <tr>
      <td>UserName</td>

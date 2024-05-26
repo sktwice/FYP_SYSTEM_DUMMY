@@ -6,9 +6,9 @@ package com.fyp.controller.lecturer;
 
 
 
-import com.fyp.model.bean.lecturer;
-import com.fyp.model.bean.login;
-import com.fyp.model.bean.faculty;
+import com.fyp.model.bean.Lecturer;
+import com.fyp.model.bean.Login;
+import com.fyp.model.bean.Faculty;
 import com.fyp.lecturer.dao.AddLecturerDAO;
 
 import jakarta.servlet.ServletException;
@@ -34,7 +34,7 @@ public class AddLecturerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            List<faculty> faculty = AL.listAllFaculties();
+            List<Faculty> faculty = AL.listAllFaculties();
             request.setAttribute("faculty", faculty);
          
             
@@ -62,15 +62,15 @@ public class AddLecturerServlet extends HttpServlet {
             int login_id = AL.generateId();
             int l_id = AL.generateId();
 
-            login lo = new login(username, password, "lecturer");
+            Login lo = new Login(username, password, "lecturer");
             lo.setLoginId(login_id); // Set the generated login ID
 
-            faculty f = AL.getFacultyById(f_id);
+            Faculty f = AL.getFacultyById(f_id);
             if (f == null) {
                 throw new Exception("Faculty not found with ID: " + f_id);
             }
 
-            lecturer l = new lecturer(l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course);
+            Lecturer l = new Lecturer(l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course);
 
             AL.registerLecturer(lo, f, l);
 

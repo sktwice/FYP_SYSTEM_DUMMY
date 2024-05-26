@@ -9,9 +9,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import com.fyp.model.bean.lecturer;
-import com.fyp.model.bean.login;
-import com.fyp.model.bean.faculty;
+import com.fyp.model.bean.Lecturer;
+import com.fyp.model.bean.Login;
+import com.fyp.model.bean.Faculty;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +46,8 @@ public class AddLecturerDAO {
         return 1 + random.nextInt(10000); // Generates a random digit number
     }
 
-    public List<faculty> listAllFaculties() throws SQLException {
-        List<faculty> listFaculty = new ArrayList<>();
+    public List<Faculty> listAllFaculties() throws SQLException {
+        List<Faculty> listFaculty = new ArrayList<>();
         String sql = "SELECT * FROM faculty";
         connect();
         try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class AddLecturerDAO {
                 int f_id = resultSet.getInt("f_id");
                 String f_name = resultSet.getString("f_name");
                 String f_course = resultSet.getString("f_course");
-                faculty f = new faculty(f_id, f_name, f_course);
+                Faculty f = new Faculty(f_id, f_name, f_course);
                 listFaculty.add(f);
             }
         } finally {
@@ -66,9 +66,9 @@ public class AddLecturerDAO {
         return listFaculty;
     }  
     
-    public faculty getFacultyById(int fId) throws SQLException {
+    public Faculty getFacultyById(int fId) throws SQLException {
         String sqlFaculty = "SELECT * FROM faculty WHERE f_id = ?";
-        faculty f = null;
+        Faculty f = null;
         connect();
         try (PreparedStatement statementFaculty = jdbcConnection.prepareStatement(sqlFaculty)) {
             statementFaculty.setInt(1, fId);
@@ -77,7 +77,7 @@ public class AddLecturerDAO {
             if (resultSet.next()) {
                 String fName = resultSet.getString("f_name");
                 String fCourse = resultSet.getString("f_course");
-                f = new faculty(fId, fName, fCourse);
+                f = new Faculty(fId, fName, fCourse);
             }
         } finally {
             disconnect();
@@ -86,7 +86,7 @@ public class AddLecturerDAO {
     }
     
     
-    public void registerLecturer(login log, faculty f, lecturer user) throws SQLException {
+    public void registerLecturer(Login log, Faculty f, Lecturer user) throws SQLException {
         String sqlLogin = "INSERT INTO login (login_id, username, password, category) VALUES (?, ?, ?, ?)";
         String sqlLecturer = "INSERT INTO lecturer (l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connect();
