@@ -8,12 +8,12 @@ package com.fyp.model.bean;
  *
  * @author User
  */
-public class faculty {
+public class Faculty {
     private int fId;
     private String fName;
     private String fCourse;
     
-    public faculty(int fId, String fName, String fCourse){
+    public Faculty(int fId, String fName, String fCourse){
         this.fId=fId;
         this.fName=fName;
         this.fCourse=fCourse;
