@@ -8,7 +8,7 @@ package com.fyp.model.bean;
  *
  * @author User
  */
-public class admin {
+public class Admin {
     private int adminId;
     private int loginId;
     private String aImage;
@@ -16,7 +16,7 @@ public class admin {
     private int phoneNum;
     private String email;
     
-    public admin(int adminId, int loginId, String aImage, String aName, int phoneNum, String email ){
+    public Admin(int adminId, int loginId, String aImage, String aName, int phoneNum, String email ){
         this.adminId=adminId;
         this.loginId=loginId;
         this.aImage=aImage;
