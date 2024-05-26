@@ -4,7 +4,7 @@
  */
 package com.fyp.model.Dao.login;
 
-import com.fyp.model.bean.login;
+import com.fyp.model.bean.Login;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class LoginDAO {
 
-    public boolean validate(login loginBean) throws ClassNotFoundException {
+    public boolean validate(Login loginBean) throws ClassNotFoundException {
         boolean status = false;
 
         Class.forName("com.mysql.jdbc.Driver");
