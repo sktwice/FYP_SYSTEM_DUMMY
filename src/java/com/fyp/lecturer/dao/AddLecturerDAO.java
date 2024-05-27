@@ -46,13 +46,8 @@ public class AddLecturerDAO {
         return 1 + random.nextInt(10000); // Generates a random digit number
     }
 
-<<<<<<< HEAD
-    public List<Faculty> listAllFaculties() throws SQLException {
+    public List<Faculty> listFaculty() throws SQLException {
         List<Faculty> listFaculty = new ArrayList<>();
-=======
-    public List<faculty> listFaculty() throws SQLException {
-        List<faculty> listFaculty = new ArrayList<>();
->>>>>>> origin/master
         String sql = "SELECT * FROM faculty";
         connect();
 
@@ -63,27 +58,17 @@ public class AddLecturerDAO {
                 int f_id = resultSet.getInt("f_id");
                 String f_name = resultSet.getString("f_name");
                 String f_course = resultSet.getString("f_course");
-<<<<<<< HEAD
-                Faculty f = new Faculty(f_id, f_name, f_course);
-=======
 
-                faculty f = new faculty(f_id, f_name, f_course);
->>>>>>> origin/master
+                Faculty f = new Faculty(f_id, f_name, f_course);
                 listFaculty.add(f);
             }
         } finally {
             disconnect();
         }
         return listFaculty;
-<<<<<<< HEAD
-    }  
-    
-    public Faculty getFacultyById(int fId) throws SQLException {
-=======
     }
 
-    public faculty getFacultyById(int fId) throws SQLException {
->>>>>>> origin/master
+    public Faculty getFacultyById(int fId) throws SQLException {
         String sqlFaculty = "SELECT * FROM faculty WHERE f_id = ?";
         Faculty f = null;
         connect();
@@ -101,14 +86,8 @@ public class AddLecturerDAO {
         }
         return f;
     }
-<<<<<<< HEAD
-    
-    
-    public void registerLecturer(Login log, Faculty f, Lecturer user) throws SQLException {
-=======
 
-    public void registerLecturer(login log, faculty f, lecturer user) throws SQLException {
->>>>>>> origin/master
+    public void registerLecturer(Login log, Faculty f, Lecturer user) throws SQLException {
         String sqlLogin = "INSERT INTO login (login_id, username, password, category) VALUES (?, ?, ?, ?)";
         String sqlLecturer = "INSERT INTO lecturer (l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connect();
