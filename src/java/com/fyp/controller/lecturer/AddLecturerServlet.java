@@ -27,6 +27,7 @@ public class AddLecturerServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private AddLecturerDAO AL;
 
+    @Override
     public void init() {
         AL = new AddLecturerDAO();
     }
@@ -34,10 +35,8 @@ public class AddLecturerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            List<faculty> faculty = AL.listAllFaculties();
-            request.setAttribute("faculty", faculty);
-         
-            
+            List<faculty> facultyList = AL.listFaculty();
+            request.setAttribute("facultyList", facultyList);
             request.getRequestDispatcher("/Admin/Add-Lecturer.jsp").forward(request, response);
         } catch (SQLException e) {
             throw new ServletException(e);
@@ -47,18 +46,20 @@ public class AddLecturerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
             String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            int f_id = Integer.parseInt(request.getParameter("f_id"));
+            String password = request.getParameter("password"); 
             String position = request.getParameter("position");
             String l_image = request.getParameter("l_image");
             String l_name = request.getParameter("l_name");
             int phone_num = Integer.parseInt(request.getParameter("phone_num"));
             String email = request.getParameter("email");
-            String l_course = request.getParameter("l_course");
+           
             int admin_id = Integer.parseInt(request.getParameter("admin_id"));
 
+            int f_id = Integer.parseInt(request.getParameter("f_id"));
+            String l_course = request.getParameter("f_course");
+            
+            
             int login_id = AL.generateId();
             int l_id = AL.generateId();
 
@@ -71,9 +72,8 @@ public class AddLecturerServlet extends HttpServlet {
             }
 
             lecturer l = new lecturer(l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course);
-
             AL.registerLecturer(lo, f, l);
-
+            
            
         } catch (Exception e) {
             e.printStackTrace();

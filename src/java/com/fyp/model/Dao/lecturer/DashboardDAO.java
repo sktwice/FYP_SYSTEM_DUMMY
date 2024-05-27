@@ -15,7 +15,7 @@ public class DashboardDAO {
         Class.forName("com.mysql.jdbc.Driver");
 
         // Establish a connection to the database
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample?useSSL=false", "root", "faris161102");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/fyp?useSSL=false", "root", "");
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) AS total FROM student")) {
 
             // Execute the query and retrieve the result set

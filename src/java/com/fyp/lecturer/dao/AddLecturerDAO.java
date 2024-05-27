@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class AddLecturerDAO {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/fyp";
+    
+    private String jdbcURL = "jdbc:mysql://localhost:3306/fyp?useSSL=false";
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
     private Connection jdbcConnection;
@@ -46,17 +46,19 @@ public class AddLecturerDAO {
         return 1 + random.nextInt(10000); // Generates a random digit number
     }
 
-    public List<faculty> listAllFaculties() throws SQLException {
+    public List<faculty> listFaculty() throws SQLException {
         List<faculty> listFaculty = new ArrayList<>();
         String sql = "SELECT * FROM faculty";
         connect();
+
         try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery(sql)) {
+             ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
                 int f_id = resultSet.getInt("f_id");
                 String f_name = resultSet.getString("f_name");
                 String f_course = resultSet.getString("f_course");
+
                 faculty f = new faculty(f_id, f_name, f_course);
                 listFaculty.add(f);
             }
@@ -64,8 +66,8 @@ public class AddLecturerDAO {
             disconnect();
         }
         return listFaculty;
-    }  
-    
+    }
+
     public faculty getFacultyById(int fId) throws SQLException {
         String sqlFaculty = "SELECT * FROM faculty WHERE f_id = ?";
         faculty f = null;
@@ -84,8 +86,7 @@ public class AddLecturerDAO {
         }
         return f;
     }
-    
-    
+
     public void registerLecturer(login log, faculty f, lecturer user) throws SQLException {
         String sqlLogin = "INSERT INTO login (login_id, username, password, category) VALUES (?, ?, ?, ?)";
         String sqlLecturer = "INSERT INTO lecturer (l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
