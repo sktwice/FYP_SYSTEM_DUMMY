@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class AddLecturerDAO {
-    private String jdbcURL = "jdbc:mysql://localhost:3306/fyp";
+    
+    private String jdbcURL = "jdbc:mysql://localhost:3306/fyp?useSSL=false";
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
     private Connection jdbcConnection;
@@ -46,27 +46,44 @@ public class AddLecturerDAO {
         return 1 + random.nextInt(10000); // Generates a random digit number
     }
 
+<<<<<<< HEAD
     public List<Faculty> listAllFaculties() throws SQLException {
         List<Faculty> listFaculty = new ArrayList<>();
+=======
+    public List<faculty> listFaculty() throws SQLException {
+        List<faculty> listFaculty = new ArrayList<>();
+>>>>>>> origin/master
         String sql = "SELECT * FROM faculty";
         connect();
+
         try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery(sql)) {
+             ResultSet resultSet = statement.executeQuery()) {
 
             while (resultSet.next()) {
                 int f_id = resultSet.getInt("f_id");
                 String f_name = resultSet.getString("f_name");
                 String f_course = resultSet.getString("f_course");
+<<<<<<< HEAD
                 Faculty f = new Faculty(f_id, f_name, f_course);
+=======
+
+                faculty f = new faculty(f_id, f_name, f_course);
+>>>>>>> origin/master
                 listFaculty.add(f);
             }
         } finally {
             disconnect();
         }
         return listFaculty;
+<<<<<<< HEAD
     }  
     
     public Faculty getFacultyById(int fId) throws SQLException {
+=======
+    }
+
+    public faculty getFacultyById(int fId) throws SQLException {
+>>>>>>> origin/master
         String sqlFaculty = "SELECT * FROM faculty WHERE f_id = ?";
         Faculty f = null;
         connect();
@@ -84,9 +101,14 @@ public class AddLecturerDAO {
         }
         return f;
     }
+<<<<<<< HEAD
     
     
     public void registerLecturer(Login log, Faculty f, Lecturer user) throws SQLException {
+=======
+
+    public void registerLecturer(login log, faculty f, lecturer user) throws SQLException {
+>>>>>>> origin/master
         String sqlLogin = "INSERT INTO login (login_id, username, password, category) VALUES (?, ?, ?, ?)";
         String sqlLecturer = "INSERT INTO lecturer (l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connect();
