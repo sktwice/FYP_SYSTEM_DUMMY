@@ -32,7 +32,19 @@
         </select><br><br>
         
         <label for="l_course">Lecturer Course:</label>
-        <input type="text" id="l_course" name="l_course" required><br><br>
+        <select id="l_course" name="l_course" required>
+            <option value="">Select Course</option>
+            <% 
+                List<String> courseList = (List<String>) request.getAttribute("courseList");
+                if (courseList != null) {
+                    for (String course : courseList) {
+                        out.println("<option value=\"" + course + "\">" + course + "</option>");
+                    }
+                } else {
+                    out.println("<option value=\"\">No courses available</option>");
+                }
+            %>
+        </select><br><br>
 
         <label for="admin_id">Admin ID:</label>
         <input type="text" id="admin_id" name="admin_id" required><br><br>

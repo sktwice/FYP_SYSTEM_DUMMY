@@ -32,8 +32,9 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     try {
         List<Faculty> facultyList = AL.listFaculty();
-        System.out.println("Faculty list from DAO: " + facultyList); // Debug statement
+        List<String> courseList = AL.courseList();
         request.setAttribute("facultyList", facultyList);
+        request.setAttribute("courseList", courseList); 
         request.getRequestDispatcher("/Admin/Add-Lecturer.jsp").forward(request, response);
     } catch (SQLException e) {
         throw new ServletException(e);

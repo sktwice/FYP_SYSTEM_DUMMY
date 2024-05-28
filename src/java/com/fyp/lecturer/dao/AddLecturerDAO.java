@@ -66,6 +66,9 @@ public List<Faculty> listFaculty() throws SQLException {
 }
 
 
+
+
+
     public Faculty getFacultyById(int fId) throws SQLException {
         String sqlFaculty = "SELECT * FROM faculty WHERE f_id = ?";
         Faculty f = null;
@@ -84,6 +87,25 @@ public List<Faculty> listFaculty() throws SQLException {
         }
         return f;
     }
+    
+    
+    public List<String> courseList() throws SQLException {
+    List<String> listCourses = new ArrayList<>();
+    String sql = "SELECT f_course FROM faculty"; 
+    connect();
+
+    try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
+
+        while (resultSet.next()) {
+            String l_course = resultSet.getString("f_course");
+            listCourses.add(l_course );
+        }
+    } finally {
+        disconnect();
+    }
+    return listCourses;
+}
 
     public void registerLecturer(Login log, Faculty f, Lecturer user) throws SQLException {
         String sqlLogin = "INSERT INTO login (login_id, username, password, category) VALUES (?, ?, ?, ?)";
