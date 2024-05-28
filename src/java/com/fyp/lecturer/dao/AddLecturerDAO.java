@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.fyp.lecturer.dao;
 
 import java.util.Random;
@@ -19,9 +15,9 @@ import java.util.List;
 
 public class AddLecturerDAO {
     
-    private String jdbcURL = "jdbc:mysql://localhost:3306/sample?useSSL=false";
+    private String jdbcURL = "jdbc:mysql://localhost:3306/fyp?useSSL=false";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "faris161102";
+    private String jdbcPassword = "";
     private Connection jdbcConnection;
 
     protected void connect() throws SQLException {
@@ -46,7 +42,7 @@ public class AddLecturerDAO {
         return 1 + random.nextInt(10000); // Generates a random digit number
     }
 
-    public List<Faculty> listFaculty() throws SQLException {
+public List<Faculty> listFaculty() throws SQLException {
     List<Faculty> listFaculty = new ArrayList<>();
     String sql = "SELECT * FROM faculty";
     connect();
@@ -62,15 +58,10 @@ public class AddLecturerDAO {
             Faculty f = new Faculty(f_id, f_name, f_course);
             listFaculty.add(f);
         }
-    } catch (SQLException e) {
-        e.printStackTrace(); // Add this line to log any SQL exceptions
     } finally {
         disconnect();
     }
-
-    // Log the retrieved list of faculties
-    System.out.println("Retrieved faculties: " + listFaculty);
-
+    System.out.println("Faculty list: " + listFaculty); // Debug statement
     return listFaculty;
 }
 

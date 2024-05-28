@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.fyp.controller.lecturer;
 
 
@@ -22,7 +18,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 
-
+@WebServlet("/RegisterLecturerServlet")
 public class AddLecturerServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private AddLecturerDAO AL;
@@ -32,17 +28,17 @@ public class AddLecturerServlet extends HttpServlet {
         AL = new AddLecturerDAO();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            System.out.println("Inside doGet method of AddLecturerServlet"); // Add this line for debugging
-            List<Faculty> facultyList = AL.listFaculty();
-            request.setAttribute("facultyList", facultyList);
-            request.getRequestDispatcher("/Admin/Add-Lecturer.jsp").forward(request, response);
-        } catch (SQLException e) {
-            throw new ServletException(e);
-        }
+protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    try {
+        List<Faculty> facultyList = AL.listFaculty();
+        System.out.println("Faculty list from DAO: " + facultyList); // Debug statement
+        request.setAttribute("facultyList", facultyList);
+        request.getRequestDispatcher("/Admin/Add-Lecturer.jsp").forward(request, response);
+    } catch (SQLException e) {
+        throw new ServletException(e);
     }
+}
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -58,7 +54,7 @@ public class AddLecturerServlet extends HttpServlet {
             int admin_id = Integer.parseInt(request.getParameter("admin_id"));
 
             int f_id = Integer.parseInt(request.getParameter("f_id"));
-            String l_course = request.getParameter("f_course");
+            String l_course = request.getParameter("l_course");
             
             
             int login_id = AL.generateId();
@@ -78,7 +74,7 @@ public class AddLecturerServlet extends HttpServlet {
            
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp");
+           
         }
     }
 }
