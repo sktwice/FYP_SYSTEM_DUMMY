@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 
-@WebServlet("/RegisterServlet")
+
 public class AddLecturerServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private AddLecturerDAO AL;
@@ -35,6 +35,7 @@ public class AddLecturerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            System.out.println("Inside doGet method of AddLecturerServlet"); // Add this line for debugging
             List<Faculty> facultyList = AL.listFaculty();
             request.setAttribute("facultyList", facultyList);
             request.getRequestDispatcher("/Admin/Add-Lecturer.jsp").forward(request, response);

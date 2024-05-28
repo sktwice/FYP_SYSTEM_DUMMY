@@ -19,9 +19,9 @@ import java.util.List;
 
 public class AddLecturerDAO {
     
-    private String jdbcURL = "jdbc:mysql://localhost:3306/fyp?useSSL=false";
+    private String jdbcURL = "jdbc:mysql://localhost:3306/sample?useSSL=false";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "";
+    private String jdbcPassword = "faris161102";
     private Connection jdbcConnection;
 
     protected void connect() throws SQLException {
@@ -47,26 +47,33 @@ public class AddLecturerDAO {
     }
 
     public List<Faculty> listFaculty() throws SQLException {
-        List<Faculty> listFaculty = new ArrayList<>();
-        String sql = "SELECT * FROM faculty";
-        connect();
+    List<Faculty> listFaculty = new ArrayList<>();
+    String sql = "SELECT * FROM faculty";
+    connect();
 
-        try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
+    try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+         ResultSet resultSet = statement.executeQuery()) {
 
-            while (resultSet.next()) {
-                int f_id = resultSet.getInt("f_id");
-                String f_name = resultSet.getString("f_name");
-                String f_course = resultSet.getString("f_course");
+        while (resultSet.next()) {
+            int f_id = resultSet.getInt("f_id");
+            String f_name = resultSet.getString("f_name");
+            String f_course = resultSet.getString("f_course");
 
-                Faculty f = new Faculty(f_id, f_name, f_course);
-                listFaculty.add(f);
-            }
-        } finally {
-            disconnect();
+            Faculty f = new Faculty(f_id, f_name, f_course);
+            listFaculty.add(f);
         }
-        return listFaculty;
+    } catch (SQLException e) {
+        e.printStackTrace(); // Add this line to log any SQL exceptions
+    } finally {
+        disconnect();
     }
+
+    // Log the retrieved list of faculties
+    System.out.println("Retrieved faculties: " + listFaculty);
+
+    return listFaculty;
+}
+
 
     public Faculty getFacultyById(int fId) throws SQLException {
         String sqlFaculty = "SELECT * FROM faculty WHERE f_id = ?";

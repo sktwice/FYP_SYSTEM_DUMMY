@@ -1,5 +1,5 @@
 <%@ page import="java.util.List" %>
-<%@ page import="com.fyp.model.bean.faculty" %>
+<%@ page import="com.fyp.model.bean.Faculty" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.ArrayList, java.util.Iterator" %>
 
@@ -9,7 +9,7 @@
 </head>
 <body>
     <h2>Register Lecturer</h2>
-    <form action="RegisterServlet" method="post">
+    <form action="AddLecturer" method="post">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
         
@@ -20,9 +20,9 @@
         <select id="f_id" name="f_id" required>
             <option value="">Select Faculty and Course</option>
             <% 
-                List<faculty> listFaculty = (List<faculty>) request.getAttribute("listFaculty");
+                List<Faculty> listFaculty = (List<Faculty>) request.getAttribute("facultyList");
                 if (listFaculty != null) {
-                    for (faculty f : listFaculty) {
+                    for (Faculty f : listFaculty) {
                         out.println("<option value=\"" + f.getfId() + "\">" + f.getfName() + " :- " + f.getfCourse() + "</option>");
                     }
                 } else {
