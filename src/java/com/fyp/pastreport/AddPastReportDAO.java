@@ -7,12 +7,15 @@ package com.fyp.pastreport;
 import java.io.IOException;
 import java.io.PrintWriter;
 import com.fyp.model.bean.pastReport;
+import com.fyp.model.bean.Lecturer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Date;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.*;
 
 
 public class AddPastReportDAO{
@@ -21,6 +24,37 @@ public class AddPastReportDAO{
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
     private Connection jdbcConnection;
+    
+    
+    public List<Lecturer> listLecturer() throws SQLException {
+        List<Lecturer> listLecturer = new ArrayList<>();
+        String sql = "SELECT * FROM lecturer";
+        connect();
+
+        try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int l_id = resultSet.getInt("l_id");
+                int f_id = resultSet.getInt("f_id");
+                int login_id = resultSet.getInt("login_id");
+                int admin_id = resultSet.getInt("admin_id");
+                String position = resultSet.getString("position");
+                String l_image = resultSet.getString("l_image");
+                String l_name = resultSet.getString("l_name");
+                Integer phone_num = resultSet.getInt("phone_num"); 
+                String email = resultSet.getString("email");
+                String l_course = resultSet.getString("l_course");
+
+                Lecturer lecturer = new Lecturer(l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course);
+                listLecturer.add(lecturer);
+            }
+        } finally {
+            disconnect();
+        }
+        
+        return listLecturer;
+    }
     
     
         protected void connect() throws SQLException {

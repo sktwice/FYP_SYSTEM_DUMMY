@@ -1,8 +1,5 @@
-<%-- 
-    Document   : Add-New-Pass-Report-Admin
-    Created on : May 2, 2024, 6:52:39 PM
-    Author     : User
---%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.fyp.model.bean.Lecturer" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -20,8 +17,20 @@
         <label for="student_id">Student ID:</label>
         <input type="text" id="student_id" name="student_id" required><br><br>
         
-        <label for="l_id">Lecturer ID:</label>
-        <input type="text" id="l_id" name="l_id" required><br><br>
+        <label for="l_id">Lecturer:</label>
+        <select id="l_id" name="l_id" required>
+            <option value="">Select Lecturer</option>
+            <% 
+                List<Lecturer> listLecturer = (List<Lecturer>) request.getAttribute("lecturerList");
+                if (listLecturer != null) {
+                    for (Lecturer l : listLecturer) {
+                        out.println("<option value=\"" + l.getL_id() + "\">" + l.getL_name() + "</option>");
+                    }
+                } else {
+                    out.println("<option value=\"\">No lecturers available</option>");
+                }
+            %>
+        </select><br><br>
         
         <label for="pro_title">Project Title:</label>
         <input type="text" id="pro_title" name="pro_title" required><br><br>
