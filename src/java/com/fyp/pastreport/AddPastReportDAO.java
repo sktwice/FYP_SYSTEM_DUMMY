@@ -1,6 +1,6 @@
 package com.fyp.pastreport;
 
-import com.fyp.model.bean.PdfFileC;
+import com.fyp.model.bean.PdfFile;
 import com.fyp.model.bean.pastReport;
 import com.fyp.model.bean.Lecturer;
 
@@ -61,7 +61,7 @@ public class AddPastReportDAO {
         }
     }
 
-    public void addPdfFile(PdfFileC pdf) throws SQLException {
+    public void addPdfFile(PdfFile pdf) throws SQLException {
         String pdfSql = "INSERT INTO pdf_files (file_name, file_path) VALUES (?, ?)";
         connect();
 
@@ -69,8 +69,8 @@ public class AddPastReportDAO {
             jdbcConnection.setAutoCommit(false);
 
             try (PreparedStatement statementPDF = jdbcConnection.prepareStatement(pdfSql)) {
-                statementPDF.setString(1, pdf.getFileNameC());
-                statementPDF.setString(2, pdf.getPdfPathC());
+                statementPDF.setString(1, pdf.getFileName());
+                ///statementPDF.setString(2, pdf.getPdfPath());
                 statementPDF.executeUpdate();
             }
 

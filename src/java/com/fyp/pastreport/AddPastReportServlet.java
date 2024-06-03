@@ -4,7 +4,7 @@
  */
 package com.fyp.pastreport;
 
-import com.fyp.model.bean.PdfFileC;
+import com.fyp.model.bean.PdfFile;
 import com.fyp.model.bean.pastReport;
 import com.fyp.model.bean.Lecturer;
 import com.fyp.upload.PDFDAO;
@@ -71,11 +71,11 @@ public class AddPastReportServlet extends HttpServlet {
             }
 
             pastReport report = new pastReport(proId, studentId, lId, proTitle, session);
-            PdfFileC  pdf = new PdfFileC(fileName, filePath);
+            //PdfFile  pdf = new PdfFile(fileName, filePath);
 
             
             PR.addPastReport(report);
-            PR.addPdfFile(pdf);
+            ///PR.addPdfFile(pdf);
 
             response.sendRedirect("success.jsp");
         } catch (Exception e) {
