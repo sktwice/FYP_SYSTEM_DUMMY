@@ -4,41 +4,44 @@
  */
 package com.fyp.pastreport;
 
+import com.fyp.model.bean.PdfFileC;
+import com.fyp.model.bean.pastReport;
+import com.fyp.model.bean.Lecturer;
+import com.fyp.upload.PDFDAO;
+import com.fyp.pastreport.AddPastReportDAO;
 
 import jakarta.servlet.ServletException;
-
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.fyp.pastreport.AddPastReportDAO;
-import com.fyp.model.bean.pastReport;
-import com.fyp.model.bean.Lecturer;
-import java.sql.Date;
-import java.util.List;
-import java.sql.SQLException;
+import jakarta.servlet.http.Part;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.InputStream;
+import java.sql.SQLException;
+import java.util.List;
 
-
+@MultipartConfig
 public class AddPastReportServlet extends HttpServlet {
-    
-    
     private static final long serialVersionUID = 1L;
-    private AddPastReportDAO databaseHandler;
+    private AddPastReportDAO PR;
+    private PDFDAO PDF;
 
     public void init() {
-        databaseHandler = new AddPastReportDAO();
+        PR = new AddPastReportDAO();
+        PDF = new PDFDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            List<Lecturer> listLecturer = databaseHandler.listLecturer();
+            List<Lecturer> listLecturer = PR.listLecturer();
             request.setAttribute("lecturerList", listLecturer);
-            request.getRequestDispatcher("/Add-New-Past-Report-Admin.jsp").forward(request, response);
+            request.getRequestDispatcher("Admin/Add-New-Pass-Report-Admin.jsp").forward(request, response);
         } catch (SQLException e) {
             throw new ServletException("Cannot obtain lecturers from DB", e);
         }
@@ -48,27 +51,49 @@ public class AddPastReportServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            int pro_id = Integer.parseInt(request.getParameter("pro_id"));
-            int stu_id = Integer.parseInt(request.getParameter("student_id"));
-            int l_id = Integer.parseInt(request.getParameter("l_id"));
-            String pro_title = request.getParameter("pro_title");
+            int proId = Integer.parseInt(request.getParameter("pro_id"));
+            int studentId = Integer.parseInt(request.getParameter("student_id"));
+            int lId = Integer.parseInt(request.getParameter("l_id"));
+            String proTitle = request.getParameter("pro_title");
+            String session = request.getParameter("session");
 
-            String sessionStr = request.getParameter("session");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            Date session = new Date(dateFormat.parse(sessionStr).getTime());
+            Part filePart = request.getPart("pdfFile");
+            String fileName = getFileName(filePart);
+            String filePath = getServletContext().getRealPath("/") + "uploads" + File.separator + fileName;
 
-            pastReport report = new pastReport(pro_id, stu_id, l_id, pro_title, session);
-            AddPastReportDAO dao = new AddPastReportDAO();
-            dao.AddPastReport(report);
+            try (FileOutputStream fos = new FileOutputStream(filePath);
+                 InputStream is = filePart.getInputStream()) {
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = is.read(buffer)) != -1) {
+                    fos.write(buffer, 0, bytesRead);
+                }
+            }
+
+            pastReport report = new pastReport(proId, studentId, lId, proTitle, session);
+            PdfFileC  pdf = new PdfFileC(fileName, filePath);
+
+            
+            PR.addPastReport(report);
+            PR.addPdfFile(pdf);
 
             response.sendRedirect("success.jsp");
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-            response.sendRedirect("error.jsp");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendRedirect("error.jsp");
         }
     }
+
+    private String getFileName(Part part) {
+        String contentDisposition = part.getHeader("content-disposition");
+        String[] tokens = contentDisposition.split(";");
+        for (String token : tokens) {
+            if (token.trim().startsWith("filename")) {
+                return token.substring(token.indexOf('=') + 2, token.length() - 1);
+            }
+        }
+        return "";
+    }
 }
+
+

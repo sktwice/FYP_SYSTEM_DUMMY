@@ -8,7 +8,8 @@ public class PdfFile {
     private int id;
     private String fileName;
     private String filePath;
-
+    
+    
     public int getId() {
         return id;
     }
@@ -17,7 +18,7 @@ public class PdfFile {
         return fileName;
     }
 
-    public String getFilePath() {
+    public String getPDFPath() {
         return filePath;
     }
 
@@ -29,7 +30,7 @@ public class PdfFile {
         this.fileName = fileName;
     }
 
-    public void setFilePath(String filePath) {
+    public void setPDFPath(String filePath) {
         this.filePath = filePath;
     }
 

@@ -47,7 +47,7 @@ public class PdfFileUploadServlet extends HttpServlet {
 
         PdfFile pdfFile = new PdfFile();
         pdfFile.setFileName(fileName);
-        pdfFile.setFilePath(filePath);
+        pdfFile.setPDFPath(filePath);
         try {
             pdfFileDao.savePdfFile(pdfFile);
         } catch (SQLException e) {

@@ -17,7 +17,7 @@ public class PDFDAO {
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/sample?useSSL=false";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "faris161102";
+    private String jdbcPassword = "";
 
     private static final String INSERT_PDF_SQL = "INSERT INTO pdf_files (file_name, file_path) VALUES (?, ?)";
     private static final String SELECT_PDF_BY_ID = "SELECT id, file_name, file_path FROM pdf_files WHERE id = ?";
@@ -41,7 +41,7 @@ public class PDFDAO {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PDF_SQL)) {
             preparedStatement.setString(1, pdfFile.getFileName());
-            preparedStatement.setString(2, pdfFile.getFilePath());
+            preparedStatement.setString(2, pdfFile.getPDFPath());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error saving PDF file", e);
@@ -62,7 +62,7 @@ public class PDFDAO {
                 pdfFile = new PdfFile();
                 pdfFile.setId(id);
                 pdfFile.setFileName(fileName);
-                pdfFile.setFilePath(filePath);
+                pdfFile.setPDFPath(filePath);
             }
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Error retrieving PDF file by ID", e);

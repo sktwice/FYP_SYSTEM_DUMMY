@@ -11,7 +11,7 @@
     <h1>Dashboard Admin Temp</h1>
     <ul>
         <li><a href="RegisterLecturerServlet">Add Lecturer Into System</a></li>
-        <li><a href="Admin/AddPastReportServlet">Add Past Report</a></li>
+        <li><a href="AddPastReportServlet">Add Past Report</a></li>
     </ul>
 </body>
 </html>
