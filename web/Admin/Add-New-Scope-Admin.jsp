@@ -1,17 +1,33 @@
-<%-- 
-    Document   : Add-New-Scope-Admin
-    Created on : May 2, 2024, 6:52:26 PM
-    Author     : User
---%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+<head>
+    <title>Add New Scope</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2>Add New Scope</h2>
+    <form action="addScope" method="post">
+        <div class="form-group">
+            <label for="scopeId">Scope ID</label>
+            <input type="number" class="form-control" id="scopeId" name="scopeId" required>
+        </div>
+        <div class="form-group">
+            <label for="scopeName">Scope Name</label>
+            <input type="text" class="form-control" id="scopeName" name="scopeName" required>
+        </div>
+        <div class="form-group">
+            <label for="program">Program</label>
+            <input type="text" class="form-control" id="program" name="program" required>
+        </div>
+        <div class="form-group">
+            <label for="session">Session</label>
+            <input type="text" class="form-control" id="session" name="session" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
 </html>
