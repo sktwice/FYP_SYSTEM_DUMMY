@@ -14,24 +14,6 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Lecturer Management App</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <div class="profile-info">
-                            <img src="path/to/profile/icon.png" alt="Profile">
-                            <div class="user-details">
-                                <c:out value="${sessionScope.userName}"/><br>
-                                <c:out value="${sessionScope.userCategory}"/>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
     <div class="container">
         <h2>Register Lecturer</h2>
         <form action="RegisterLecturerServlet" method="post">
@@ -63,8 +45,13 @@
                 </c:forEach>
             </select><br><br>
 
-            <label for="position">Position:</label>
-            <input type="text" id="position" name="position" required><br><br>
+           <label for="position">Position:</label>
+<select id="position" name="position" required>
+    <option value="">Select Position</option>
+    <option value="N/A">N/A</option>
+    <option value="Supervisor">Supervisor</option>
+    <option value="Examiner">Examiner</option>
+</select><br><br>
 
             <label for="l_image">Image Path:</label>
             <input type="text" id="l_image" name="l_image" required><br><br>

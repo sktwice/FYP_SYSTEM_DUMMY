@@ -104,6 +104,10 @@
         <servlet-name>AdminDAO</servlet-name>
         <servlet-class>com.fyp.model.user.AdminDAO</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteLoginLecturer</servlet-name>
+        <servlet-class>com.fyp.LecturerList.DeleteLoginLecturer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Dashboard_LecturerServlet</servlet-name>
         <url-pattern>/Dashboard_LecturerServlet</url-pattern>
