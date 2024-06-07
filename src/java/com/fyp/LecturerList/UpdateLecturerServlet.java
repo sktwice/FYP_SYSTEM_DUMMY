@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import com.fyp.model.bean.Lecturer;
 
-public class EditLecturerServlet extends HttpServlet {
+public class UpdateLecturerServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private LecturerListDAO lecturerDAO;
@@ -31,16 +31,18 @@ public class EditLecturerServlet extends HttpServlet {
 
 
         try{
-                    showEditForm(request, response);
-                    updateLecturer(request, response);
-                    insertLecturer(request, response);
-                    
+                     updateLecturer(request, response);
+                     
         }catch(SQLException e){
         e.printStackTrace();
         }
         
 
 }
+
+     
+
+
     private void listLecturer(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         List<Lecturer> listLecturer = lecturerDAO.selectAllLecturers();

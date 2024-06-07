@@ -12,7 +12,7 @@
         <div class="card-body">
             <c:set var="lecturer" value="${requestScope.lecturer}" />
             <c:set var="isEdit" value="${not empty lecturer}" />
-            <form action="${isEdit ? 'LecturerListServlet/update' : 'LecturerListServlet/insert'}" method="post">
+            <form action="${isEdit ? '/updateLecturer' : '/insertLecturer'}" method="post">
                 <c:if test="${isEdit}">
                     <input type="hidden" name="id" value="${lecturer.lId}" />
                 </c:if>
