@@ -59,24 +59,26 @@ public class AddLecturerServlet extends HttpServlet {
             int f_id = Integer.parseInt(request.getParameter("f_id"));
             String l_course = request.getParameter("l_course");
 
-            int login_id = AL.generateId();
-            int l_id = AL.generateId();
+            // Generate a single ID and use it for both login_id and l_id
+            int generatedId = AL.generateId();
+            int generatedId1 = AL.generateId();
 
             Login lo = new Login(username, password, "lecturer");
-            lo.setLoginId(login_id); // Set the generated login ID
+            lo.setLoginId(generatedId); // Set the generated login ID
 
             Faculty f = AL.getFacultyById(f_id);
             if (f == null) {
                 throw new Exception("Faculty not found with ID: " + f_id);
             }
 
-            Lecturer l = new Lecturer(l_id, f_id, login_id, adminId, position, l_image, l_name, phone_num, email, l_course);
+            Lecturer l = new Lecturer(generatedId1, f_id, generatedId, adminId, position, l_image, l_name, phone_num, email, l_course);
+            
             AL.registerLecturer(lo, f, l);
 
-            
+            response.sendRedirect("LecturerListServlet");
+
         } catch (Exception e) {
             e.printStackTrace();
-            
         }
     }
 }

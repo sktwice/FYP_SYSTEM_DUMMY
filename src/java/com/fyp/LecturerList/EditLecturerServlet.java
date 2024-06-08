@@ -32,9 +32,7 @@ public class EditLecturerServlet extends HttpServlet {
 
         try{
                     showEditForm(request, response);
-                    updateLecturer(request, response);
-                    insertLecturer(request, response);
-                    
+                 
         }catch(SQLException e){
         e.printStackTrace();
         }
@@ -55,42 +53,21 @@ public class EditLecturerServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int lId = Integer.parseInt(request.getParameter("id"));
-        Lecturer existingLecturer = lecturerDAO.selectLecturer(lId);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/ListLecturerForm.jsp");
-        request.setAttribute("lecturer", existingLecturer);
-        dispatcher.forward(request, response);
-         response.sendRedirect("LecturerListServlet");
-    }
+    int lId = Integer.parseInt(request.getParameter("id"));
+    Lecturer existingLecturer = lecturerDAO.selectLecturer(lId);
+    
+    // Get the f_id from the existingLecturer
+    int fId = existingLecturer.getfId();
+    
+    // Set f_id attribute in request scope
+    request.setAttribute("f_id", fId);
+    
+    RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/ListLecturerForm.jsp");
+    request.setAttribute("lecturer", existingLecturer);
+    dispatcher.forward(request, response);
+}
 
-    private void insertLecturer(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-        String lName = request.getParameter("lName");
-        String position = request.getParameter("position");
-        int lId = Integer.parseInt(request.getParameter("lId"));
-        String email = request.getParameter("email");
-        Lecturer newLecturer = new Lecturer(lId, 0, 0, 0, position, "", lName, 0, email, "");
-        lecturerDAO.insertLecturer(newLecturer);
-        response.sendRedirect("LecturerListServlet/list");
-    }
 
-    private void updateLecturer(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-        int lId = Integer.parseInt(request.getParameter("id"));
-        String lName = request.getParameter("lName");
-        String position = request.getParameter("position");
-        String email = request.getParameter("email");
-
-        Lecturer lecturer = new Lecturer(lId, 0, 0, 0, position, "", lName, 0, email, "");
-        lecturerDAO.updateLecturer(lecturer);
-        response.sendRedirect("LecturerListServlet/list");
-    }
-
-    private void deleteLecturer(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException {
-        int lId = Integer.parseInt(request.getParameter("id"));
-        lecturerDAO.deleteLecturer(lId);
-    }
 }

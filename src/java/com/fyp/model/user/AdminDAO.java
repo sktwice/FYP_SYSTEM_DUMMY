@@ -1,4 +1,4 @@
-package com.fyp.dao;
+package com.fyp.model.user;
 
 import com.fyp.model.bean.Admin;
 

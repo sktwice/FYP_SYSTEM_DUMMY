@@ -3,7 +3,7 @@ package com.fyp.controller.login;
 import com.fyp.model.bean.Login;
 import com.fyp.model.bean.Admin;
 import com.fyp.model.Dao.login.LoginDAO;
-import com.fyp.dao.AdminDAO;
+import com.fyp.model.user.AdminDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
