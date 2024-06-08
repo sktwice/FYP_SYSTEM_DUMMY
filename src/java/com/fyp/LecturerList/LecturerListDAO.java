@@ -196,28 +196,26 @@ public Lecturer selectLecturer(int lId) {
     }
         
         
-public boolean updateLecturer(int originalId, Lecturer lecturer) throws SQLException {
-    boolean rowUpdated;
-    String updateSQL = "UPDATE lecturer SET f_id = ?, l_id = ?  , admin_id = ?, position = ?, l_image = ?, l_name = ?, phone_num = ?, email = ?, l_course = ? WHERE login_id = ?";
-
-    try (Connection connection = getConnection();
-         PreparedStatement statement = connection.prepareStatement(updateSQL)) {
-        statement.setInt(1, lecturer.getfId());
-        statement.setInt(2, lecturer.getLoginId());
-        statement.setInt(3, lecturer.getAdminId());
-        statement.setString(4, lecturer.getPosition());
-        statement.setString(5, lecturer.getiImage());
-        statement.setString(6, lecturer.getlName());
-        statement.setInt(7, lecturer.getPhoneNum());
-        statement.setString(8, lecturer.getEmail());
-        statement.setString(9, lecturer.getsCourse());
-        statement.setInt(10, originalId);
-
-        rowUpdated = statement.executeUpdate() > 0;
+  public boolean updateLecturer(Lecturer lecturer) throws SQLException {
+        boolean rowUpdated;
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_LECT_SQL);
+             ) {
+            statement.setInt(1, lecturer.getfId());
+            statement.setInt(2, lecturer.getLoginId());
+            statement.setInt(3, lecturer.getAdminId());
+            statement.setString(4, lecturer.getPosition());
+            statement.setString(5, lecturer.getiImage());
+            statement.setString(6, lecturer.getlName());
+            statement.setInt(7, lecturer.getPhoneNum());
+            statement.setString(8, lecturer.getEmail());
+            statement.setString(9, lecturer.getsCourse());
+            statement.setInt(10, lecturer.getlId());
+            rowUpdated = statement.executeUpdate() > 0;
+            
+        }
+        return rowUpdated;
     }
-
-    return rowUpdated;
-}
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {

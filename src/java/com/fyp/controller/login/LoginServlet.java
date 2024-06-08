@@ -6,7 +6,6 @@ import com.fyp.model.Dao.login.LoginDAO;
 import com.fyp.model.user.AdminDAO;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

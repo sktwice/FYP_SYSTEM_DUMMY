@@ -11,10 +11,11 @@
         <div class="card-body">
             <form action="updateLecturer" method="post">
                 <% if (request.getAttribute("lecturer") != null) { %>
+                    <input type="hidden" name="id" value="<%= ((Lecturer) request.getAttribute("lecturer")).getlId() %>" />
                     <h2>Edit Lecturer</h2>
                     <fieldset class="form-group">
                         <label>Lecturer ID</label>
-                        <input type="text" value="<%= ((Lecturer) request.getAttribute("lecturer")).getlId() %>" class="form-control" name="id" required="required">
+                        <input type="text" value="<%= ((Lecturer) request.getAttribute("lecturer")).getlId() %>" class="form-control" name="lId" readonly>
                     </fieldset>
                     <fieldset class="form-group">
                         <label>Lecturer Name</label>
@@ -28,7 +29,6 @@
                         <label>Email</label>
                         <input type="text" value="<%= ((Lecturer) request.getAttribute("lecturer")).getEmail() %>" class="form-control" name="email">
                     </fieldset>
-                    <input type="hidden" name="lid" value="<%= ((Lecturer) request.getAttribute("lecturer")).getlId() %>" />
                     <input type="hidden" name="f_id" value="<%= ((Lecturer) request.getAttribute("lecturer")).getfId() %>" />
                     <button type="submit" class="btn btn-success">Save</button>
                 <% } %>
@@ -38,3 +38,4 @@
 </div>
 </body>
 </html>
+

@@ -40,45 +40,32 @@ public class UpdateLecturerServlet extends HttpServlet {
 }
 
 
+
+
 private void updateLecturer(HttpServletRequest request, HttpServletResponse response)
         throws SQLException, IOException {
-    
-    int originalId = Integer.parseInt(request.getParameter("lid"));
-    int newlId = Integer.parseInt(request.getParameter("id"));
-    String lName = request.getParameter("lName");
-    String position = request.getParameter("position");
+    int lId = Integer.parseInt(request.getParameter("id"));
     String email = request.getParameter("email");
-
-    Lecturer existingLecturer = lecturerDAO.selectLecturer(originalId);
+    
+    Lecturer existingLecturer = lecturerDAO.selectLecturer(lId);
     System.out.println("Existing Lecturer: " + existingLecturer);
 
     if (existingLecturer != null) {
-        // Preserve existing data that is not being updated
+        
+        String lName = request.getParameter("lName");
+        String position = request.getParameter("position");
         int fId = existingLecturer.getfId();
-        int loginId = existingLecturer.getLoginId();
-        int adminId = existingLecturer.getAdminId();
-        String iImage = existingLecturer.getiImage();
-        int phoneNum = existingLecturer.getPhoneNum();
-        String sCourse = existingLecturer.getsCourse();
 
-        // Update lecturer's ID
-        existingLecturer.setlId(newlId);
+        Lecturer lecturer = new Lecturer(lId, fId, existingLecturer.getLoginId(), existingLecturer.getAdminId(), position, existingLecturer.getiImage(), lName, existingLecturer.getPhoneNum(), email, existingLecturer.getsCourse());
 
-        // Create an updated lecturer object with the new data
-        Lecturer updatedLecturer = new Lecturer(0, fId, loginId, adminId, position, iImage, lName, phoneNum, email, sCourse);
-
-        // Update the lecturer
-        boolean isUpdated = lecturerDAO.updateLecturer(originalId, updatedLecturer);
-
-        if (isUpdated) {
-            response.sendRedirect("LecturerListServlet");
-        } else {
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to update lecturer.");
-        }
+        lecturerDAO.updateLecturer(lecturer);
+        response.sendRedirect("LecturerListServlet");
+        
     } else {
         response.sendError(HttpServletResponse.SC_NOT_FOUND, "Lecturer not found");
     }
+    
+    
 }
-
 
 }
