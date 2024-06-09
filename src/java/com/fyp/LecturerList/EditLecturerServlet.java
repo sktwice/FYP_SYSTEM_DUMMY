@@ -36,8 +36,6 @@ public class EditLecturerServlet extends HttpServlet {
         }catch(SQLException e){
         e.printStackTrace();
         }
-        
-
 }
     private void listLecturer(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {

@@ -78,7 +78,7 @@
     </servlet>
     <servlet>
         <servlet-name>AddScopeServlet</servlet-name>
-        <servlet-class>com.fyp.Scope.AddScopeServlet</servlet-class>
+        <servlet-class>com.fyp.Scope.InsertScopeServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LectureDeleteServlet</servlet-name>
@@ -107,6 +107,18 @@
     <servlet>
         <servlet-name>DeleteLoginLecturer</servlet-name>
         <servlet-class>com.fyp.LecturerList.DeleteLoginLecturer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListScopeServlet</servlet-name>
+        <servlet-class>com.fyp.Scope.ListScopeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditScopeForm</servlet-name>
+        <servlet-class>com.fyp.Scope.EditScopeForm</servlet-class>
+    </servlet>
+        <servlet>
+        <servlet-name>InsertScopeServlet</servlet-name>
+        <servlet-class>com.fyp.Scope.InsertScopeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Dashboard_LecturerServlet</servlet-name>
@@ -208,6 +220,19 @@
         <servlet-name>AdminDAO</servlet-name>
         <url-pattern>/AdminDAO</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListScopeServlet</servlet-name>
+        <url-pattern>/ListScopeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditScopeForm</servlet-name>
+        <url-pattern>/EditScopeForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertScopeServlet</servlet-name>
+        <url-pattern>/insertScope</url-pattern>
+    </servlet-mapping>
+    
     <welcome-file-list>
         <welcome-file>LoginID.jsp</welcome-file>
     </welcome-file-list>

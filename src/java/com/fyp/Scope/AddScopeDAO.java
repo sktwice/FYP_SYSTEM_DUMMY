@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import com.fyp.model.bean.Scope;
+import java.util.Random;
 
 public class AddScopeDAO {
 
@@ -50,6 +51,12 @@ public class AddScopeDAO {
         } finally {
             disconnect();
         }
+    }
+    
+    
+        public int generateId() {
+        Random random = new Random();
+        return 0 + random.nextInt(10000); // Generates a random digit number
     }
 
     private static final String SELECT_ALL_SCOPES = "SELECT scope_id, scope_name, program, session FROM scope";
