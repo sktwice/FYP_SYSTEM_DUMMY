@@ -4,8 +4,6 @@
  */
 package com.fyp.pastreport;
 
-import com.fyp.model.bean.Admin;
-import com.fyp.model.bean.Lecturer;
 import com.fyp.LecturerList.LecturerListDAO;
 import com.fyp.model.user.AdminDAO;
 import jakarta.servlet.RequestDispatcher;
@@ -16,8 +14,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 
 
