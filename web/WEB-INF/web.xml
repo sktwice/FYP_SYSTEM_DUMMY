@@ -116,9 +116,21 @@
         <servlet-name>EditScopeForm</servlet-name>
         <servlet-class>com.fyp.Scope.EditScopeForm</servlet-class>
     </servlet>
-        <servlet>
+    <servlet>
         <servlet-name>InsertScopeServlet</servlet-name>
         <servlet-class>com.fyp.Scope.InsertScopeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PastProject</servlet-name>
+        <servlet-class>com.fyp.model.bean.PastProject</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ShowAddForm</servlet-name>
+        <servlet-class>com.fyp.pastreport.ShowAddForm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListPastReport</servlet-name>
+        <servlet-class>com.fyp.pastreport.ListPastReport</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Dashboard_LecturerServlet</servlet-name>
@@ -232,7 +244,18 @@
         <servlet-name>InsertScopeServlet</servlet-name>
         <url-pattern>/insertScope</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>PastProject</servlet-name>
+        <url-pattern>/PastProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowAddForm</servlet-name>
+        <url-pattern>/addForm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListPastReport</servlet-name>
+        <url-pattern>/ListPastReport</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>LoginID.jsp</welcome-file>
     </welcome-file-list>

@@ -1,20 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package com.fyp.pastreport;
 
-import com.fyp.model.bean.PdfFile;
-import com.fyp.model.bean.pastReport;
-import com.fyp.model.bean.Lecturer;
-import com.fyp.upload.PDFDAO;
-import com.fyp.pastreport.AddPastReportDAO;
-
+import com.fyp.model.bean.PastProject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 
 import java.io.File;
@@ -22,78 +14,87 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
-import java.util.List;
 
 @MultipartConfig
 public class AddPastReportServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private AddPastReportDAO PR;
-    private PDFDAO PDF;
 
     public void init() {
         PR = new AddPastReportDAO();
-        PDF = new PDFDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            List<Lecturer> listLecturer = PR.listLecturer();
-            request.setAttribute("lecturerList", listLecturer);
-            request.getRequestDispatcher("Admin/Add-New-Pass-Report-Admin.jsp").forward(request, response);
-        } catch (SQLException e) {
-            throw new ServletException("Cannot obtain lecturers from DB", e);
-        }
+        // Handle GET requests here if needed
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+         HttpSession session = request.getSession();
+         Integer adminId = (Integer) session.getAttribute("admin_id");
+         System.out.println("Admin ID in session: " + adminId);
+          if (adminId == null) {
+            response.sendRedirect("RegisterLecturerServlet");
+            return;
+        }
+        
         try {
-            int proId = Integer.parseInt(request.getParameter("pro_id"));
-            int studentId = Integer.parseInt(request.getParameter("student_id"));
+            
+  
+            int proId = PR.generateId();
+            
             int lId = Integer.parseInt(request.getParameter("l_id"));
+            String studentName = request.getParameter("stu_name");
+            int studentId = Integer.parseInt(request.getParameter("student_id"));
             String proTitle = request.getParameter("pro_title");
-            String session = request.getParameter("session");
+            String session1 = request.getParameter("session");
+
+            // Debugging log statements
+            System.out.println("proId: " + proId);
+            System.out.println("lId: " + lId);
+            System.out.println("adminId: " + adminId);
+            System.out.println("studentName: " + studentName);
+            System.out.println("studentId: " + studentId);
+            System.out.println("proTitle: " + proTitle);
+            System.out.println("session: " + session1);
 
             Part filePart = request.getPart("pdfFile");
-            String fileName = getFileName(filePart);
-            String filePath = getServletContext().getRealPath("/") + "uploads" + File.separator + fileName;
+            String fileName = filePart.getSubmittedFileName();
+            System.out.println("fileName: " + fileName);
 
-            try (FileOutputStream fos = new FileOutputStream(filePath);
-                 InputStream is = filePart.getInputStream()) {
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = is.read(buffer)) != -1) {
-                    fos.write(buffer, 0, bytesRead);
+            // Specify the directory to save the files
+            String uploadPath = getServletContext().getRealPath("") + File.separator + "pdf" + File.separator + "proposalSV";
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) {
+                uploadDir.mkdirs();
+            }
+
+            // Save the file
+            String filePath = uploadPath + File.separator + fileName;
+            try (InputStream inputStream = filePart.getInputStream();
+                 FileOutputStream outputStream = new FileOutputStream(new File(filePath))) {
+                int read;
+                final byte[] bytes = new byte[1024];
+                while ((read = inputStream.read(bytes)) != -1) {
+                    outputStream.write(bytes, 0, read);
                 }
             }
 
-            pastReport report = new pastReport(proId, studentId, lId, proTitle, session);
-            //PdfFile  pdf = new PdfFile(fileName, filePath);
+            String proPdf = "pdf/proposalSV/" + fileName; // Update this to your actual URL path
+            
+            PastProject pastReport = new PastProject(proId, lId, adminId, studentName, studentId, proTitle, session1, proPdf);
+
+            PR.addPastReport(pastReport);
+            System.out.println("Insert success");
 
             
-            PR.addPastReport(report);
-            ///PR.addPdfFile(pdf);
-
-            response.sendRedirect("success.jsp");
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp");
+            
         }
-    }
-
-    private String getFileName(Part part) {
-        String contentDisposition = part.getHeader("content-disposition");
-        String[] tokens = contentDisposition.split(";");
-        for (String token : tokens) {
-            if (token.trim().startsWith("filename")) {
-                return token.substring(token.indexOf('=') + 2, token.length() - 1);
-            }
-        }
-        return "";
     }
 }
-
-

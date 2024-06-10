@@ -1,7 +1,10 @@
-package com.fyp.LecturerList;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package com.fyp.pastreport;
 
-import java.util.stream.Collectors;
-import com.fyp.model.bean.Faculty;
+import com.fyp.model.bean.PastProject;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,15 +15,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import com.fyp.model.bean.Lecturer;
-
-public class LecturerListServlet extends HttpServlet {
+public class ListPastReport extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private LecturerListDAO lecturerDAO;
+    private  AddPastReportDAO rpDAO;
 
     public void init() {
-        lecturerDAO = new LecturerListDAO();
+        rpDAO = new AddPastReportDAO();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -31,9 +32,8 @@ public class LecturerListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws  IOException, ServletException {
 
-
         try{
-                    listLecturer(request, response);
+         listReport(request, response);
                     
         }catch(SQLException e){
         e.printStackTrace();
@@ -42,18 +42,11 @@ public class LecturerListServlet extends HttpServlet {
 
 }
     
-private void listLecturer(HttpServletRequest request, HttpServletResponse response)
+private void listReport(HttpServletRequest request, HttpServletResponse response)
         throws SQLException, IOException, ServletException {
-    List<Lecturer> listLecturer = lecturerDAO.selectAllLecturers();
-    
-    // Filter the list to include only lecturers with lId > 0
-    List<Lecturer> filteredList = listLecturer.stream()
-            .filter(lecturer -> lecturer.getlId() > 0)
-            .collect(Collectors.toList());
-    
-    request.setAttribute("listLecturer", filteredList);
-    RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/ListOfLecturer.jsp");
+    List<PastProject> listPastReport =  rpDAO.listPastReports();
+    request.setAttribute("listPastReport", listPastReport );
+    RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/Report-Admin.jsp");
     dispatcher.forward(request, response);
 }
-
 }

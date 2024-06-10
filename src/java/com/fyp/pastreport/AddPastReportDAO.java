@@ -1,48 +1,17 @@
 package com.fyp.pastreport;
 
-import com.fyp.model.bean.PdfFile;
-import com.fyp.model.bean.pastReport;
-import com.fyp.model.bean.Lecturer;
+import com.fyp.model.bean.PastProject;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class AddPastReportDAO {
     private String jdbcURL = "jdbc:mysql://localhost:3306/fyp?useSSL=false";
     private String jdbcUsername = "root";
     private String jdbcPassword = "";
     private Connection jdbcConnection;
-
-    public List<Lecturer> listLecturer() throws SQLException {
-        List<Lecturer> listLecturer = new ArrayList<>();
-        String sql = "SELECT * FROM lecturer";
-        connect();
-
-        try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
-
-            while (resultSet.next()) {
-                int l_id = resultSet.getInt("l_id");
-                int f_id = resultSet.getInt("f_id");
-                int login_id = resultSet.getInt("login_id");
-                int admin_id = resultSet.getInt("admin_id");
-                String position = resultSet.getString("position");
-                String l_image = resultSet.getString("l_image");
-                String l_name = resultSet.getString("l_name");
-                int phone_num = resultSet.getInt("phone_num");
-                String email = resultSet.getString("email");
-                String l_course = resultSet.getString("l_course");
-
-                Lecturer lecturer = new Lecturer(l_id, f_id, login_id, admin_id, position, l_image, l_name, phone_num, email, l_course);
-                listLecturer.add(lecturer);
-            }
-        } finally {
-            disconnect();
-        }
-
-        return listLecturer;
-    }
 
     protected void connect() throws SQLException {
         if (jdbcConnection == null || jdbcConnection.isClosed()) {
@@ -61,31 +30,43 @@ public class AddPastReportDAO {
         }
     }
 
-    public void addPdfFile(PdfFile pdf) throws SQLException {
-        String pdfSql = "INSERT INTO pdf_files (file_name, file_path) VALUES (?, ?)";
-        connect();
-
-        try {
-            jdbcConnection.setAutoCommit(false);
-
-            try (PreparedStatement statementPDF = jdbcConnection.prepareStatement(pdfSql)) {
-                statementPDF.setString(1, pdf.getFileName());
-                ///statementPDF.setString(2, pdf.getPdfPath());
-                statementPDF.executeUpdate();
-            }
-
-            jdbcConnection.commit();
-        } catch (SQLException ex) {
-            jdbcConnection.rollback();
-            throw new SQLException(ex);
-        } finally {
-            jdbcConnection.setAutoCommit(true);
-            disconnect();
-        }
+    public int generateId() {
+        Random random = new Random();
+        return random.nextInt(1000); // Generates a random digit number
     }
 
-    public void addPastReport(pastReport ps) throws SQLException {
-        String sqlPastReport = "INSERT INTO past_project (pro_id, student_id, l_id, pro_title, session) VALUES (?, ?, ?, ?, ?)";
+
+
+    public List<PastProject> listPastReports() throws SQLException {
+        List<PastProject> listPastReports = new ArrayList<>();
+        String sql = "SELECT * FROM past_project";
+        connect();
+
+        try (PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                int proId = resultSet.getInt("pro_ID");
+                int lId = resultSet.getInt("l_id");
+                int adminId = resultSet.getInt("admin_id");
+                String studentName = resultSet.getString("student_name");
+                int studentId = resultSet.getInt("student_id");
+                String proTitle = resultSet.getString("pro_title");
+                String session = resultSet.getString("session");
+                String proPdf = resultSet.getString("pro_pdf");
+
+                PastProject pastReport = new PastProject(proId, lId, adminId, studentName, studentId, proTitle, session, proPdf);
+                listPastReports.add(pastReport);
+            }
+        } finally {
+            disconnect();
+        }
+
+        return listPastReports;
+    }
+
+    public void addPastReport(PastProject ps) throws SQLException {
+        String sqlPastReport = "INSERT INTO past_project (pro_ID, l_id, admin_id, student_name, student_id, pro_title, session, pro_pdf) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         connect();
 
         try {
@@ -93,10 +74,13 @@ public class AddPastReportDAO {
 
             try (PreparedStatement statementRP = jdbcConnection.prepareStatement(sqlPastReport)) {
                 statementRP.setInt(1, ps.getProId());
-                statementRP.setInt(2, ps.getStudentId());
-                statementRP.setInt(3, ps.getLId());
-                statementRP.setString(4, ps.getProTitle());
-                statementRP.setString(5, ps.getSession());
+                statementRP.setInt(2, ps.getLId());
+                statementRP.setInt(3, ps.getAdminId());
+                statementRP.setString(4, ps.getStudentName());
+                statementRP.setInt(5, ps.getStudentId());
+                statementRP.setString(6, ps.getProTitle());
+                statementRP.setString(7, ps.getSession());
+                statementRP.setString(8, ps.getProPdf());
                 statementRP.executeUpdate();
             }
 

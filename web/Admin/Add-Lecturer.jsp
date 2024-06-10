@@ -46,12 +46,12 @@
             </select><br><br>
 
            <label for="position">Position:</label>
-<select id="position" name="position" required>
-    <option value="">Select Position</option>
-    <option value="N/A">N/A</option>
-    <option value="Supervisor">Supervisor</option>
-    <option value="Examiner">Examiner</option>
-</select><br><br>
+           <select id="position" name="position" required>
+           <option value="">Select Position</option>
+           <option value="N/A">N/A</option>
+            <option value="Supervisor">Supervisor</option>
+            <option value="Examiner">Examiner</option>
+            </select><br><br>
 
             <label for="l_image">Image Path:</label>
             <input type="text" id="l_image" name="l_image" required><br><br>
